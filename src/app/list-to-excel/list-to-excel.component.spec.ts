@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { List2excelComponent } from './list2excel.component';
+import { ListToExcelComponent } from './list-to-excel.component';
 
-describe('List2excelComponent', () => {
-  let component: List2excelComponent;
-  let fixture: ComponentFixture<List2excelComponent>;
+describe('ListToExcelComponent', () => {
+  let component: ListToExcelComponent;
+  let fixture: ComponentFixture<ListToExcelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ List2excelComponent ]
+      declarations: [ ListToExcelComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(List2excelComponent);
+    fixture = TestBed.createComponent(ListToExcelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
