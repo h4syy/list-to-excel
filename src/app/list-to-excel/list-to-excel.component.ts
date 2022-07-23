@@ -63,13 +63,17 @@ export class ListToExcelComponent implements OnInit {
     // const blobData = new Blob([excelBuffer], { type: EXCEL_TYPE });
     // this.filerSaver.save(blobData, 'demofile');
   }
+
+  empty: boolean = true;
+
+
   getds1() {
     this.data = this.data1.getDataSet1()
-    console.log(this.data);
-    display(){
+    this.empty = false;
   }
   getds2() {
     this.data = this.data1.getDataSet2()
+    this.empty = false;
   }
   getds3() {
     this.data = this.data1.getDataSet3()

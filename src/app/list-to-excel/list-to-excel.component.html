@@ -1,6 +1,5 @@
-<p>list-to-excel works!</p>
-
-<button class="btn" (click)="excelExport()"><i class="fa fa-download"></i> Download </button>
+<br>
+<br>
 
 <!-- <select name="cars" id="cars">
   <option onclick="">Choose a dataset.</option>
@@ -11,15 +10,39 @@
 </select> -->
 
 <div class="dropdown">
-  <label for="dropdownButton" class="lead selector-label">choose a text:</label>
+  <label for="dropdownButton" class="lead selector-label">Choose the desired dataset:</label>
   <button class="btn btn-light dropdown-toggle" type="button" id="dropdownButton"
       data-bs-toggle="dropdown" aria-expanded="false">
-      choose a dataset 
+      --------
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownButton">
       <li><a class="dropdown-item" (click)="getds1()">First Dataset</a></li>
-      <li><a class="dropdown-item" (click)="getds2()">Empty Dataset</a></li>
-      <li><a class="dropdown-item" (click)="getds3()">Third Dataset</a></li>
+      <li><a class="dropdown-item" (click)="getds2()">Second Dataset</a></li>
+      <li><a class="dropdown-item" (click)="getds3()">Empty Dataset</a></li>
       <li><a class="dropdown-item" (click)="getds4()">Fourth Dataset</a></li>
   </ul>
+</div>
+<button class="btn" (click)="excelExport()"><i class="fa fa-download"></i> Sort and Download </button>
+<div *ngIf="(data?.length == 0)">
+  Please select a non empty dataset.
+</div>
+<div *ngIf="!(data?.length == 0)">
+  <table class="table" *ngFor="let table of data">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of table.studentsList">
+        <th>{{student.Id}}</th>
+        <td>{{student.Name}}</td>
+        <td>{{student.Phone}}</td>
+        <td>{{student.Email}}</td>
+      </tr>
+    </tbody>
+</table>
 </div>
