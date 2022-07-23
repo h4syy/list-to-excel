@@ -24,20 +24,21 @@ export class ListToExcelComponent implements OnInit {
     const EXCEL_EXTENSION = '.xlsx'; //own code
     //creating a worksheet
     const worksheet = XLSX.utils.json_to_sheet(this.data);
+    // creating a workbook
     const workBook = XLSX.utils.book_new();
-    const excelBuffer = XLSX.write(workBook, {
-      bookType: 'xlsx',
-      type: 'array',
-    });
+    // const excelBuffer = XLSX.write(workBook, {
+    //   bookType: 'xlsx',
+    //   type: 'array',
+    // });
 
     this.data.forEach((obj: any) => {
-      workBook.SheetNames.push(obj.group);
+      // workBook.SheetNames.push(obj.group);
       XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
-      console.log(workBook.SheetNames);
+      XLSX.writeFile(workBook, 'output.xlsx');
     });
 
     //making a blobData of EXCEL TYPE
-    const blobData = new Blob([excelBuffer], { type: EXCEL_TYPE });
-    this.filerSaver.save(blobData, 'demofile');
+    // const blobData = new Blob([excelBuffer], { type: EXCEL_TYPE });
+    // this.filerSaver.save(blobData, 'demofile');
   }
 }
