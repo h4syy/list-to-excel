@@ -29,15 +29,40 @@ export class ListToExcelComponent implements OnInit {
     //   bookType: 'xlsx',
     //   type: 'array',
     // });
-
+    let address = 'A1';
     this.data.forEach((obj: any) => {
       // workBook.SheetNames.push(obj.group);
-      let worksheet_data: any = obj.studentsList;
-      const worksheet = XLSX.utils.json_to_sheet(worksheet_data);
-      XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
-      XLSX.writeFile(workBook, 'output.xlsx');
-    });
+      let worksheet_data: any = obj.studentsList.sort((a: any, b: any) =>
+        a.Name > b.Name ? 1 : -1
+      );
 
+      const worksheet: any = XLSX.utils.sheet_add_aoa(workBook.Sheets[obj.group], [["Group: " + obj.group]], { origin: "A1" })
+      XLSX.utils.sheet_add_json(worksheet, worksheet_data, { origin: "A3" })
+      XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
+      // if (!worksheet[address]) worksheet[address] = {};
+      // worksheet[address].t = obj.group;
+      worksheet['!cols'] = [
+        { wpx: 72 },
+        { wpx: 150 },
+        { wpx: 150 },
+        { wpx: 200 },
+      ];
+      const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 3 } }];
+      worksheet['!merges'] = merge;
+    });
+    XLSX.writeFile(workBook, 'output.xlsx');
+    function alphabetically() {
+      //       (a: any, b: any)=>{}
+      //       if (a.Name> b.Name)
+      // {
+      //     return 1
+      // }
+      // else if (a.Name< b.Name)
+      // {
+      //     return -1
+      // }
+      // else return 0
+    }
     //making a blobData of EXCEL TYPE
     // const blobData = new Blob([excelBuffer], { type: EXCEL_TYPE });
     // this.filerSaver.save(blobData, 'demofile');
