@@ -12,11 +12,10 @@ export class ListToExcelComponent implements OnInit {
   constructor(
     private data1: GroupstudentService,
     private filerSaver: FileSaverService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.data = this.data1.getData();
-    console.log(this.data);
+
   }
   excelExport() {
     //code given by xlsx
@@ -32,10 +31,7 @@ export class ListToExcelComponent implements OnInit {
     let address = 'A1';
     this.data.forEach((obj: any) => {
       // workBook.SheetNames.push(obj.group);
-      let worksheet_data: any = obj.studentsList.sort((a: any, b: any) =>
-        a.Name > b.Name ? 1 : -1
-      );
-
+      let worksheet_data: any = obj.studentsList.sort((a: any, b: any) => a.Name > b.Name ? 1 : -1);
       const worksheet: any = XLSX.utils.sheet_add_aoa(workBook.Sheets[obj.group], [["Group: " + obj.group]], { origin: "A1" })
       XLSX.utils.sheet_add_json(worksheet, worksheet_data, { origin: "A3" })
       XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
@@ -67,4 +63,19 @@ export class ListToExcelComponent implements OnInit {
     // const blobData = new Blob([excelBuffer], { type: EXCEL_TYPE });
     // this.filerSaver.save(blobData, 'demofile');
   }
+  getds1() {
+    this.data = this.data1.getDataSet1()
+    console.log(this.data);
+    display(){
+  }
+  getds2() {
+    this.data = this.data1.getDataSet2()
+  }
+  getds3() {
+    this.data = this.data1.getDataSet3()
+  }
+  getds4() {
+    this.data = this.data1.getDataSet4()
+  }
 }
+

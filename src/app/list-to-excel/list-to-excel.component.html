@@ -1,3 +1,25 @@
 <p>list-to-excel works!</p>
 
 <button class="btn" (click)="excelExport()"><i class="fa fa-download"></i> Download </button>
+
+<!-- <select name="cars" id="cars">
+  <option onclick="">Choose a dataset.</option>
+  <option (click)="getds1()">Dataset 1</option>
+  <option (click)="getds2()">Dataset 2</option>
+  <option (click)="getds3()">Dataset 3</option>
+  <option (click)="getds4()">Dataset 4</option>
+</select> -->
+
+<div class="dropdown">
+  <label for="dropdownButton" class="lead selector-label">choose a text:</label>
+  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownButton"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      choose a dataset 
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownButton">
+      <li><a class="dropdown-item" (click)="getds1()">First Dataset</a></li>
+      <li><a class="dropdown-item" (click)="getds2()">Empty Dataset</a></li>
+      <li><a class="dropdown-item" (click)="getds3()">Third Dataset</a></li>
+      <li><a class="dropdown-item" (click)="getds4()">Fourth Dataset</a></li>
+  </ul>
+</div>
