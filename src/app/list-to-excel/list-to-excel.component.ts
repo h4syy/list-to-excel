@@ -16,14 +16,13 @@ export class ListToExcelComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = this.data1.getData();
+    console.log(this.data);
   }
   excelExport() {
     //code given by xlsx
     const EXCEL_TYPE =
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     const EXCEL_EXTENSION = '.xlsx'; //own code
-    //creating a worksheet
-    const worksheet = XLSX.utils.json_to_sheet(this.data);
     // creating a workbook
     const workBook = XLSX.utils.book_new();
     // const excelBuffer = XLSX.write(workBook, {
@@ -33,6 +32,8 @@ export class ListToExcelComponent implements OnInit {
 
     this.data.forEach((obj: any) => {
       // workBook.SheetNames.push(obj.group);
+      let worksheet_data: any = obj.studentsList;
+      const worksheet = XLSX.utils.json_to_sheet(worksheet_data);
       XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
       XLSX.writeFile(workBook, 'output.xlsx');
     });
