@@ -1045,6 +1045,9 @@ export class GroupstudentService {
   // getData() {
   //   return this.dataset;
   // }
+
+
+  // TODO also make this as generic as possible, 1 function only
   getDataSet1() {
     return this.dataset1;
   }

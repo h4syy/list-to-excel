@@ -24,7 +24,11 @@ export class ListToExcelComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  createWB() {
+
+  /**
+   * Creates the excel workbook
+   */
+  private createWB() {
 
     // creating a workbook
     const workBook = XLSX.utils.book_new();
@@ -48,25 +52,25 @@ export class ListToExcelComponent implements OnInit {
       worksheet['!merges'] = merge;
     });
     // XLSX.writeFile(workBook, 'output.xlsx');
-    function alphabetically() {
-      //       (a: any, b: any)=>{}
-      //       if (a.Name> b.Name)
-      // {
-      //     return 1
-      // }
-      // else if (a.Name< b.Name)
-      // {
-      //     return -1
-      // }
-      // else return 0
-    }
+    // function alphabetically() {
+    //       (a: any, b: any)=>{}
+    //       if (a.Name> b.Name)
+    // {
+    //     return 1
+    // }
+    // else if (a.Name< b.Name)
+    // {
+    //     return -1
+    // }
+    // else return 0
+    // }
 
     this.excelFile = XLSX.write(workBook, {
       bookType: 'xlsx',
       type: 'array',
     });
     //making a blobData of EXCEL TYPE
-    if (!this.empty) {
+    if (this.data.length == 0) {
       this.messageService.add({ severity: 'success', summary: 'Dataset Loaded', detail: 'Press the export button to save it.' });
     }
   }
@@ -79,30 +83,27 @@ export class ListToExcelComponent implements OnInit {
     this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
   }
 
-  empty: boolean = true;
+  // empty: boolean = true;
 
+  // --- Make these 4 functions generic i.e one function that works for all [getDS(index: number)]
   getds1() {
-    this.data = this.data1.getDataSet1()
-    this.empty = false;
+    this.data = this.data1.getDataSet1();
     this.createWB();
     this.dataset = "First Dataset"
   }
   getds2() {
-    this.data = this.data1.getDataSet2()
-    this.empty = false;
+    this.data = this.data1.getDataSet2();
     this.createWB();
     this.dataset = "Second Dataset"
 
   }
   getds3() {
-    this.data = this.data1.getDataSet3()
-    this.empty = true;
+    this.data = this.data1.getDataSet3();
     this.dataset = "Empty Dataset"
     this.messageService.add({ severity: 'error', summary: 'Empty Workbook', detail: 'You selected an empty workbook.' });
   }
   getds4() {
-    this.data = this.data1.getDataSet4()
-    this.empty = false;
+    this.data = this.data1.getDataSet4();
     this.createWB();
     this.dataset = "Fourth Dataset"
   }
