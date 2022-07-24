@@ -1,0 +1,52 @@
+.lead {
+  margin-left: 0px;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+#downloadbtn {
+  margin-left: 0px;
+}
+
+#headline {
+  background-color: #100F0F;
+  color: white;
+}
+
+
+tr:nth-child(even) {
+  background: #F1F1F1
+}
+
+tr:nth-child(odd) {
+  background: #E2DCC8
+}
+
+.gap {
+  margin-left: 10px;
+}
+
+#downloadbtn {
+  margin-left: 20px;
+  background-color: #E2DCC8;
+}
+
+#dropdownButton {
+  margin-left: 2px;
+  background-color: #E2DCC8;
+}
+
+.dropdown-menu {
+  background-color: #F1F1F1;
+}
+
+.emptywarning {
+  border-style: double;
+  background-color: lightgreen;
+}
+
+#choosedataset {
+  font-weight: bold;
+}
