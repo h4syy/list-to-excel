@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FileSaverService } from 'ngx-filesaver';
 import * as XLSX from 'xlsx';
 import { MessageService } from 'primeng/api';
-import { GroupstudentService } from '../services/groupstudent.service';
+import { GroupstudentService } from '../../services/groupstudent.service';
 @Component({
 
   selector: 'app-list-to-excel',
@@ -79,5 +79,4 @@ export class ListToExcelComponent implements OnInit {
     }
   }
 }
-
 

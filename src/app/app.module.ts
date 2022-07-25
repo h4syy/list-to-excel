@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListToExcelComponent } from './list-to-excel/list-to-excel.component';
+import { ListToExcelComponent } from './Components/list-to-excel/list-to-excel.component';
 import { GroupstudentService } from './services/groupstudent.service';
 import { ToastModule } from 'primeng/toast';
 @NgModule({
