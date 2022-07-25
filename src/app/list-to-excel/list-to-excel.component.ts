@@ -19,7 +19,7 @@ export class ListToExcelComponent implements OnInit {
     private data1: GroupstudentService,
     private filerSaver: FileSaverService,
     private messageService: MessageService) { }
-
+  public index: any
 
   ngOnInit(): void {
 
@@ -32,16 +32,12 @@ export class ListToExcelComponent implements OnInit {
 
     // creating a workbook
     const workBook = XLSX.utils.book_new();
-
     let address = 'A1';
     this.data.forEach((obj: any) => {
-      // workBook.SheetNames.push(obj.group);
-      let worksheet_data: any = obj.studentsList.sort((a: any, b: any) => a.Name > b.Name ? 1 : -1);
+      let worksheet_data: any = obj.studentsList
       const worksheet: any = XLSX.utils.sheet_add_aoa(workBook.Sheets[obj.group], [["Group: " + obj.group]], { origin: "A1" })
       XLSX.utils.sheet_add_json(worksheet, worksheet_data, { origin: "A3" })
       XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
-      // if (!worksheet[address]) worksheet[address] = {};
-      // worksheet[address].t = obj.group;
       worksheet['!cols'] = [
         { wpx: 72 },
         { wpx: 150 },
@@ -51,20 +47,6 @@ export class ListToExcelComponent implements OnInit {
       const merge = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 3 } }];
       worksheet['!merges'] = merge;
     });
-    // XLSX.writeFile(workBook, 'output.xlsx');
-    // function alphabetically() {
-    //       (a: any, b: any)=>{}
-    //       if (a.Name> b.Name)
-    // {
-    //     return 1
-    // }
-    // else if (a.Name< b.Name)
-    // {
-    //     return -1
-    // }
-    // else return 0
-    // }
-
     this.excelFile = XLSX.write(workBook, {
       bookType: 'xlsx',
       type: 'array',
@@ -74,8 +56,10 @@ export class ListToExcelComponent implements OnInit {
       this.messageService.add({ severity: 'success', summary: 'Dataset Loaded', detail: 'Press the export button to save it.' });
     }
   }
+
+
   export() {
-    //code given by xlsx
+    this.createWB()
     const EXCEL_TYPE =
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     const EXCEL_EXTENSION = '.xlsx'; //own code
@@ -83,29 +67,17 @@ export class ListToExcelComponent implements OnInit {
     this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
   }
 
-  // empty: boolean = true;
-
-  // --- Make these 4 functions generic i.e one function that works for all [getDS(index: number)]
-  getds1() {
-    this.data = this.data1.getDataSet1();
-    this.createWB();
-    this.dataset = "First Dataset"
-  }
-  getds2() {
-    this.data = this.data1.getDataSet2();
-    this.createWB();
-    this.dataset = "Second Dataset"
-
-  }
-  getds3() {
-    this.data = this.data1.getDataSet3();
-    this.dataset = "Empty Dataset"
-    this.messageService.add({ severity: 'error', summary: 'Empty Workbook', detail: 'You selected an empty workbook.' });
-  }
-  getds4() {
-    this.data = this.data1.getDataSet4();
-    this.createWB();
-    this.dataset = "Fourth Dataset"
+  getDS(index: number) {
+    this.data = this.data1.getDataSet(index)
+    this.dataset = "Dataset " + index
+    this.data.forEach((obj: any) => { obj.studentsList.sort((a: any, b: any) => a.Name > b.Name ? 1 : -1); })
+    if (this.data.length > 0) {
+      this.messageService.add({ severity: 'success', summary: 'Dataset Loaded', detail: 'Press the export button to save it.' });
+    }
+    else {
+      this.messageService.add({ severity: 'error', summary: 'Empty Workbook', detail: 'You selected an empty dataset.' });
+    }
   }
 }
+
 

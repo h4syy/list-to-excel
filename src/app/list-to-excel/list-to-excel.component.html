@@ -6,10 +6,10 @@
       {{dataset}}
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownButton">
-      <li><a class="dropdown-item" (click)="getds1()">First Dataset</a></li>
-      <li><a class="dropdown-item" (click)="getds2()">Second Dataset</a></li>
-      <li><a class="dropdown-item" (click)="getds3()">Empty Dataset</a></li>
-      <li><a class="dropdown-item" (click)="getds4()">Fourth Dataset</a></li>
+      <li><a class="dropdown-item" id="1" (click)="getDS(1)">First Dataset</a></li>
+      <li><a class="dropdown-item" id="2" (click)="getDS(2)">Second Dataset</a></li>
+      <li><a class="dropdown-item" id="3" (click)="getDS(3)">Empty Dataset</a></li>
+      <li><a class="dropdown-item" id="4" (click)="getDS(4)">Fourth Dataset</a></li>
   </ul>
   <button *ngIf="data.length > 0" class="btn" id="downloadbtn" (click)="export()"><i class="fa fa-download"></i>Export Workbook </button>
 </div>
