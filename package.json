@@ -21,6 +21,7 @@
     "@syncfusion/ej2-angular-notifications": "^20.2.38",
     "@types/file-saver": "^2.0.5",
     "bootstrap": "^5.2.0",
+    "exceljs": "^4.3.0",
     "file-saver": "^2.0.5",
     "jquery": "^3.6.0",
     "ngx-filesaver": "^14.0.0",

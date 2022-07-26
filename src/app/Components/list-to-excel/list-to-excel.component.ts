@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FileSaverService} from 'ngx-filesaver';
+import { Component, OnInit } from '@angular/core';
+import { FileSaverService } from 'ngx-filesaver';
 import * as XLSX from 'xlsx';
-import {MessageService} from 'primeng/api';
-import {GroupstudentService} from '../../services/groupstudent.service';
-
+import { MessageService } from 'primeng/api';
+import { GroupstudentService } from '../../services/groupstudent.service';
+import { Workbook } from 'exceljs';
 @Component({
 
   selector: 'app-list-to-excel',
@@ -30,26 +30,30 @@ export class ListToExcelComponent implements OnInit {
    * Creates the excel workbook
    */
   private createWB() {
-
-    // creating a workbook
-    const workBook = XLSX.utils.book_new();
-    let address = 'A1';
+    const workBook = new Workbook();
     this.data.forEach((obj: any) => {
-      const worksheet: any = XLSX.utils.sheet_add_aoa(workBook.Sheets[obj.group], [["Group: " + obj.group]], { origin: address })
-      XLSX.utils.sheet_add_json(worksheet, obj.studentsList, { origin: "A3" })
-      XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
-      worksheet['!cols'] = [
-        { wpx: 72 },
-        { wpx: 150 },
-        { wpx: 150 },
-        { wpx: 200 },
-      ];
-      worksheet['!merges'] = [{s: {r: 0, c: 0}, e: {r: 0, c: 3}}];
-    });
-    this.excelFile = XLSX.write(workBook, {
-      bookType: 'xlsx',
-      type: 'array',
-    });
+      const wSheet = workBook.addWorksheet(obj.group);
+      wSheet.addRows(obj.studentsList);   
+    })
+    // // creating a workbook
+    // const workBook = new Workbook();
+    // let address = 'A1';
+    // this.data.forEach((obj: any) => {
+    //   const worksheet: any = XLSX.utils.sheet_add_aoa(workBook.Sheets[obj.group], [["Group: " + obj.group]], { origin: address })
+    //   XLSX.utils.sheet_add_json(worksheet, obj.studentsList, { origin: "A3" })
+    //   XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
+    //   worksheet['!cols'] = [
+    //     { wpx: 72 },
+    //     { wpx: 150 },
+    //     { wpx: 150 },
+    //     { wpx: 200 },
+    //   ];
+    //   worksheet['!merges'] = [{s: {r: 0, c: 0}, e: {r: 0, c: 3}}];
+    // });
+    // this.excelFile = XLSX.write(workBook, {
+    //   bookType: 'xlsx',
+    //   type: 'array',
+    // });
     //making a blobData of EXCEL TYPE
 
   }
