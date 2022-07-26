@@ -3,8 +3,9 @@ import { FileSaverService } from 'ngx-filesaver';
 import { MessageService } from 'primeng/api';
 import { GroupstudentService } from '../../services/groupstudent.service';
 import { Workbook } from 'exceljs';
+import { Group } from 'src/app/Common/group';
+import { Student } from 'src/app/Common/student';
 @Component({
-
   selector: 'app-list-to-excel',
   templateUrl: './list-to-excel.component.html',
   styleUrls: ['./list-to-excel.component.scss'],
@@ -22,7 +23,6 @@ export class ListToExcelComponent implements OnInit {
   public index: any
 
   ngOnInit(): void {
-
   }
 
   /**
@@ -30,7 +30,7 @@ export class ListToExcelComponent implements OnInit {
    */
   public createWB() {
     const workBook = new Workbook();
-    this.data.forEach((obj: any) => {
+    this.data.forEach((obj: Group) => {
       const wSheet = workBook.addWorksheet(obj.group);
       wSheet.columns = [
         { width: 6 }, { width: 15 }, { width: 15 }, { width: 20 }
@@ -39,10 +39,11 @@ export class ListToExcelComponent implements OnInit {
       wSheet.getCell('A1').value = 'Group :' + obj.group;
       wSheet.getCell('A1').alignment = { horizontal: 'center' };
       wSheet.addRow(['Id', 'Name', 'Phone', 'Email'])
-      obj.studentsList.forEach((student: any) => {
+      obj.studentsList.forEach((student: Student) => {
         wSheet.addRow([student.Id, student.Name, student.Phone, student.Email])
       })
     })
+
     workBook.xlsx.writeBuffer().then((data: BlobPart) => {
       const EXCEL_TYPE =
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
@@ -51,30 +52,11 @@ export class ListToExcelComponent implements OnInit {
 
       this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
     });
-    // // creating a workbook
-    // const workBook = new Workbook();
-    // let address = 'A1';
-    // this.data.forEach((obj: any) => {
-    //   const worksheet: any = XLSX.utils.sheet_add_aoa(workBook.Sheets[obj.group], [["Group: " + obj.group]], { origin: address })
-    //   XLSX.utils.sheet_add_json(worksheet, obj.studentsList, { origin: "A3" })
-    //   XLSX.utils.book_append_sheet(workBook, worksheet, obj.group);
-    //   worksheet['!cols'] = [
-    //     { wpx: 72 },
-    //     { wpx: 150 },
-    //     { wpx: 150 },
-    //     { wpx: 200 },
-    //   ];
-    //   worksheet['!merges'] = [{s: {r: 0, c: 0}, e: {r: 0,2 c: 3}}];
-    // });
-    // this.excelFile = XLSX.write(workBook, {
-    //   bookType: 'xlsx',
-    //   type: 'array',
-    // });
-    //making a blobData of EXCEL TYPE
-
   }
 
-
+  /**
+   * This function generates excel workbook from the chosen dataset from the frontend.
+   */
   export() {
     if (this.data.length == 0) {
       this.messageService.add({ severity: 'error', summary: 'Empty Workbook', detail: 'You selected an empty dataset.' });
@@ -87,7 +69,7 @@ export class ListToExcelComponent implements OnInit {
       this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
     }
   }
-
+  /**Function to get the data */
   getDS(index: number) {
     this.data = this.data1.getDataSet(index);
     this.dataset = "Dataset " + index;
@@ -100,4 +82,14 @@ export class ListToExcelComponent implements OnInit {
     }
   }
 }
+
+/**
+ * Designing starts here
+ */
+var borderStyles = {
+  top: { style: "thin" },
+  left: { style: "thin" },
+  bottom: { style: "thin" },
+  right: { style: "thin" }
+};
 
