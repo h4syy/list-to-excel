@@ -12,7 +12,7 @@ import { Student } from 'src/app/Common/student';
   providers: [MessageService]
 })
 export class ListToExcelComponent implements OnInit {
-  data: any[] = [];
+  data: Group[] = [];
   dataset: any = "Choose dataset :"
   excelFile: any;
 
@@ -23,6 +23,8 @@ export class ListToExcelComponent implements OnInit {
   public index: any
 
   ngOnInit(): void {
+    const key = "Phone";
+    console.log(this.data[0].studentsList[3][key]);
   }
 
   /**
@@ -73,7 +75,7 @@ export class ListToExcelComponent implements OnInit {
   getDS(index: number) {
     this.data = this.data1.getDataSet(index);
     this.dataset = "Dataset " + index;
-    this.data.forEach((obj: any) => { obj.studentsList.sort((a: any, b: any) => a.Name > b.Name ? 1 : -1); });
+    this.data.forEach((obj) => { obj.studentsList.sort((a, b) => a.Name > b.Name ? 1 : -1); });
     if (this.data.length > 0) {
       this.messageService.add({ severity: 'success', summary: 'Dataset Loaded', detail: 'Press the export button to save it.' });
     }
@@ -81,6 +83,15 @@ export class ListToExcelComponent implements OnInit {
       this.messageService.add({ severity: 'error', summary: 'Empty Workbook', detail: 'You selected an empty dataset.' });
     }
   }
+
+  public exportAll() {
+    // Get all datasets
+    // Each dataset gets 1 worksheet
+    // loop each dataset
+    //    make a sheet
+    //    add a group with student table in cascading style
+  }
+
 }
 
 /**
@@ -92,4 +103,3 @@ var borderStyles = {
   bottom: { style: "thin" },
   right: { style: "thin" }
 };
-
