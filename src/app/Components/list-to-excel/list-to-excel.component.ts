@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileSaverService } from 'ngx-filesaver';
 import { MessageService } from 'primeng/api';
 import { GroupstudentService } from '../../services/groupstudent.service';
-import { Workbook } from 'exceljs';
+import { Row, Workbook } from 'exceljs';
 import { Group } from 'src/app/Common/group';
 import { Student } from 'src/app/Common/student';
 @Component({
@@ -32,6 +32,7 @@ export class ListToExcelComponent implements OnInit {
    */
   public createWB() {
     const workBook = new Workbook();
+    
     this.data.forEach((obj: Group) => {
       const wSheet = workBook.addWorksheet(obj.group);
       wSheet.columns = [
@@ -42,8 +43,57 @@ export class ListToExcelComponent implements OnInit {
       wSheet.getCell('A1').alignment = { horizontal: 'center' };
       wSheet.addRow(['Id', 'Name', 'Phone', 'Email'])
       obj.studentsList.forEach((student: Student) => {
-        wSheet.addRow([student.Id, student.Name, student.Phone, student.Email])
+        let row = wSheet.addRow([student.Id, student.Name, student.Phone, student.Email])
       })
+
+      wSheet.getCell('A1').border = {
+        top: {style: 'medium'},
+        left: {style: 'medium'},
+        bottom: {style: 'medium'},
+        right: {style: 'medium'}
+      };
+
+      wSheet.getCell('A2').border = {
+        top: {style: 'medium'},
+        left: {style: 'medium'},
+        bottom: {style: 'medium'},
+        right: {style: 'medium'}
+      };
+      wSheet.getCell('B2').border = {
+        top: {style: 'medium'},
+        left: {style: 'medium'},
+        bottom: {style: 'medium'},
+        right: {style: 'medium'}
+      };
+      wSheet.getCell('C2').border = {
+        top: {style: 'medium'},
+        left: {style: 'medium'},
+        bottom: {style: 'medium'},
+        right: {style: 'medium'}
+      };
+      wSheet.getCell('D2').border = {
+        top: {style: 'medium'},
+        left: {style: 'medium'},
+        bottom: {style: 'medium'},
+        right: {style: 'medium'}
+      };
+      //for last column
+      for (let i = 1; i < 5; i++) {
+        wSheet.getCell(obj.studentsList.length + 2, i).border = {
+          bottom: {style: 'medium'},
+        }
+      }
+      for (let i = 1; i < 5; i++) {
+        for (let j = obj.studentsList.length; j>0; j--) {
+          wSheet.getCell(j, i).border = {
+            bottom: {style: 'medium'},
+          }
+        }
+      }
+      
+
+      
+
     })
 
     workBook.xlsx.writeBuffer().then((data: BlobPart) => {
@@ -103,3 +153,4 @@ var borderStyles = {
   bottom: { style: "thin" },
   right: { style: "thin" }
 };
+
