@@ -598,21 +598,21 @@ export class GroupstudentService {
 
   getDataSet(index: number) {
     if (index == 1) {
-      return this.dataset1
+      return this.dataset1;
     }
     else if (index == 2) {
-      return this.dataset2
+      return this.dataset2;
     }
     else if (index == 3) {
-      return this.dataset3
+      return this.dataset3;
     }
     else if (index == 4) {
-      return this.dataset4
+      return this.dataset4;
     }
     else {
-      throw new Error("Dataset Not Found!")
-
+      return [];
     }
   }
+
   constructor() { }
 }
