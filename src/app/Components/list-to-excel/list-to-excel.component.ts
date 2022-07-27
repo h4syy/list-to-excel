@@ -34,7 +34,7 @@ export class ListToExcelComponent implements OnInit {
     this.data.forEach((obj: Group) => {
       const wSheet = workBook.addWorksheet(obj.group);
       wSheet.columns = [
-        { width: 6 }, { width: 15 }, { width: 15 }, { width: 20 }
+        { width: 10 }, { width: 25 }, { width: 25 }, { width: 35 }
       ];
       wSheet.mergeCells('A1:D1');
       wSheet.getCell('A1').value = 'Group :' + obj.group;
@@ -44,54 +44,59 @@ export class ListToExcelComponent implements OnInit {
         let row = wSheet.addRow([student.Id, student.Name, student.Phone, student.Email])
       })
 
+      /**
+       * Designing starts here
+       */
+      //Border for the top Group cell
       wSheet.getCell('A1').border = {
         top: { style: 'medium' },
         left: { style: 'medium' },
         bottom: { style: 'medium' },
-        right: { style: 'medium' }
+        right: { style: 'medium' },
       };
 
-      wSheet.getCell('A2').border = {
-        top: { style: 'medium' },
-        left: { style: 'medium' },
-        bottom: { style: 'medium' },
-        right: { style: 'medium' }
-      };
-      wSheet.getCell('B2').border = {
-        top: { style: 'medium' },
-        left: { style: 'medium' },
-        bottom: { style: 'medium' },
-        right: { style: 'medium' }
-      };
-      wSheet.getCell('C2').border = {
-        top: { style: 'medium' },
-        left: { style: 'medium' },
-        bottom: { style: 'medium' },
-        right: { style: 'medium' }
-      };
-      wSheet.getCell('D2').border = {
-        top: { style: 'medium' },
-        left: { style: 'medium' },
-        bottom: { style: 'medium' },
-        right: { style: 'medium' }
-      };
-      //for last column
+      //Border for each table heading i.e Id , Name, etc..
+      for (let i = 1; i < 5; i++) {
+        wSheet.getCell(2, i).border = {
+          top: { style: 'medium' },
+          left: { style: 'medium' },
+          bottom: { style: 'medium' },
+          right: { style: 'medium' },
+        }
+      }
+      //for last row
       for (let i = 1; i < 5; i++) {
         wSheet.getCell(obj.studentsList.length + 2, i).border = {
           bottom: { style: 'medium' },
+          left: { style: 'thin' },
+          right: { style: 'thin' },
         }
       }
-      for (let i = 1; i < 5; i++) {
-        for (let j = obj.studentsList.length; j > 0; j--) {
-          wSheet.getCell(j, i).border = {
-            bottom: { style: 'medium' },
+
+      //Cycling through each data cell to put borders on them
+      for (let i = 3; i < obj.studentsList.length + 2; i++) {
+        for (let j = 1; j < 4; j++) {
+          wSheet.getCell(i, j).border = {
+            bottom: { style: 'thin' },
+            left: { style: 'thin' },
+            right: { style: 'thin' }
           }
         }
       }
-      console.log(wSheet.getCell(3, 3));
 
+      //Cycling through last column to put medium borders on them
+      for (let i = 3; i < obj.studentsList.length + 2; i++) {
+        wSheet.getCell(i, 4).border = {
+          right: { style: 'medium' },
+          bottom: { style: 'thin' },
+        }
+      }
 
-
+      //For last cell
+      wSheet.getCell(obj.studentsList.length + 2, 4).border = {
+        right: { style: 'medium' },
+        bottom: { style: 'medium' },
+      }
     })
 
     workBook.xlsx.writeBuffer().then((data: BlobPart) => {
@@ -142,13 +147,5 @@ export class ListToExcelComponent implements OnInit {
 
 }
 
-/**
- * Designing starts here
- */
-var borderStyles = {
-  top: { style: "thin" },
-  left: { style: "thin" },
-  bottom: { style: "thin" },
-  right: { style: "thin" }
-};
+
 
