@@ -23,8 +23,6 @@ export class ListToExcelComponent implements OnInit {
   public index: any
 
   ngOnInit(): void {
-    const key = "Phone";
-    console.log(this.data[0].studentsList[3][key]);
   }
 
   /**
@@ -32,7 +30,7 @@ export class ListToExcelComponent implements OnInit {
    */
   public createWB() {
     const workBook = new Workbook();
-    
+
     this.data.forEach((obj: Group) => {
       const wSheet = workBook.addWorksheet(obj.group);
       wSheet.columns = [
@@ -47,52 +45,52 @@ export class ListToExcelComponent implements OnInit {
       })
 
       wSheet.getCell('A1').border = {
-        top: {style: 'medium'},
-        left: {style: 'medium'},
-        bottom: {style: 'medium'},
-        right: {style: 'medium'}
+        top: { style: 'medium' },
+        left: { style: 'medium' },
+        bottom: { style: 'medium' },
+        right: { style: 'medium' }
       };
 
       wSheet.getCell('A2').border = {
-        top: {style: 'medium'},
-        left: {style: 'medium'},
-        bottom: {style: 'medium'},
-        right: {style: 'medium'}
+        top: { style: 'medium' },
+        left: { style: 'medium' },
+        bottom: { style: 'medium' },
+        right: { style: 'medium' }
       };
       wSheet.getCell('B2').border = {
-        top: {style: 'medium'},
-        left: {style: 'medium'},
-        bottom: {style: 'medium'},
-        right: {style: 'medium'}
+        top: { style: 'medium' },
+        left: { style: 'medium' },
+        bottom: { style: 'medium' },
+        right: { style: 'medium' }
       };
       wSheet.getCell('C2').border = {
-        top: {style: 'medium'},
-        left: {style: 'medium'},
-        bottom: {style: 'medium'},
-        right: {style: 'medium'}
+        top: { style: 'medium' },
+        left: { style: 'medium' },
+        bottom: { style: 'medium' },
+        right: { style: 'medium' }
       };
       wSheet.getCell('D2').border = {
-        top: {style: 'medium'},
-        left: {style: 'medium'},
-        bottom: {style: 'medium'},
-        right: {style: 'medium'}
+        top: { style: 'medium' },
+        left: { style: 'medium' },
+        bottom: { style: 'medium' },
+        right: { style: 'medium' }
       };
       //for last column
       for (let i = 1; i < 5; i++) {
         wSheet.getCell(obj.studentsList.length + 2, i).border = {
-          bottom: {style: 'medium'},
+          bottom: { style: 'medium' },
         }
       }
       for (let i = 1; i < 5; i++) {
-        for (let j = obj.studentsList.length; j>0; j--) {
+        for (let j = obj.studentsList.length; j > 0; j--) {
           wSheet.getCell(j, i).border = {
-            bottom: {style: 'medium'},
+            bottom: { style: 'medium' },
           }
         }
       }
-      
+      console.log(wSheet.getCell(3, 3));
 
-      
+
 
     })
 
