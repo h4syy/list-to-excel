@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileSaverService } from 'ngx-filesaver';
 import { MessageService } from 'primeng/api';
 import { GroupstudentService } from '../../services/groupstudent.service';
-import { Row, Workbook } from 'exceljs';
+import { Workbook } from 'exceljs';
 import { Group } from 'src/app/Common/group';
 import { Student } from 'src/app/Common/student';
 @Component({
@@ -20,7 +20,6 @@ export class ListToExcelComponent implements OnInit {
     private data1: GroupstudentService,
     private filerSaver: FileSaverService,
     private messageService: MessageService) { }
-  public index: any
 
   ngOnInit(): void {
   }
