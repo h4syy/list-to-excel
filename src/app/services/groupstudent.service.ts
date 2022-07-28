@@ -615,4 +615,10 @@ export class GroupstudentService {
   }
 
   constructor() { }
+
+  // IT 1, IT2, iT3, bba1, bba2, bba3
+  // Program [] = [{
+  //   name: 'BSc Computing',
+  //   groups: Group[]
+  // }]
 }
