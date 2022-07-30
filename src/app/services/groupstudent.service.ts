@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Group } from '../Common/group';
 @Injectable({
   providedIn: 'root',
 })
 export class GroupstudentService {
-  dataset1: any[] = [
+  dataset1: Group[] = [
     {
       group: 'L1C1',
       studentsList: [
@@ -71,7 +71,7 @@ export class GroupstudentService {
       ],
     },
   ]
-  dataset2: any[] = [
+  dataset2: Group[] = [
     {
       group: 'L1C2',
       studentsList: [
@@ -443,8 +443,8 @@ export class GroupstudentService {
       ],
     },
   ]
-  dataset3: any[] = []
-  dataset4: any[] = [
+  dataset3: Group[] = []
+  dataset4: Group[] = [
     {
       group: 'L1C1',
       studentsList: [
@@ -613,8 +613,10 @@ export class GroupstudentService {
       return [];
     }
   }
-
-  constructor() { }
+  
+  public getallDS(): Group[][] {
+    return [this.dataset1,this.dataset2,this.dataset3,this.dataset4];
+  }
 
   // IT 1, IT2, iT3, bba1, bba2, bba3
   // Program [] = [{

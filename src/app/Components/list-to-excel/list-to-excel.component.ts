@@ -20,7 +20,6 @@ export class ListToExcelComponent implements OnInit {
     private data1: GroupstudentService,
     private filerSaver: FileSaverService,
     private messageService: MessageService) { }
-
   ngOnInit(): void {
   }
 
@@ -31,6 +30,7 @@ export class ListToExcelComponent implements OnInit {
     const workBook = new Workbook();
 
     this.data.forEach((obj: Group) => {
+      // Create worksheet for every object in the group
       const wSheet = workBook.addWorksheet(obj.group);
       wSheet.columns = [
         { width: 10 }, { width: 25 }, { width: 25 }, { width: 35 }
@@ -38,7 +38,7 @@ export class ListToExcelComponent implements OnInit {
       wSheet.mergeCells('A1:D1');
       wSheet.getCell('A1').value = 'Group :' + obj.group;
       wSheet.getCell('A1').alignment = { horizontal: 'center' };
-      wSheet.addRow(['Id', 'Name', 'Phone', 'Email'])
+      wSheet.addRow([`Group: ${obj.group}`])
       obj.studentsList.forEach((student: Student) => {
         let row = wSheet.addRow([student.Id, student.Name, student.Phone, student.Email])
       })
@@ -138,6 +138,12 @@ export class ListToExcelComponent implements OnInit {
 
   public exportAll() {
     // Get all datasets
+    const allDs = this.data1.getallDS();
+    const workbook = new Workbook();
+
+    allDs.forEach((dataset:Group))=> {
+      
+    }
     // Each dataset gets 1 worksheet
     // loop each dataset
     //    make a sheet
