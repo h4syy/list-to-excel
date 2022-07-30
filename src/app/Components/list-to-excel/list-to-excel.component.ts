@@ -142,8 +142,4 @@ export class ListToExcelComponent implements OnInit {
     // loop each dataset
     //    make a sheet
     //    add a group with student table in cascading style
-  }
-
-
-
-
+  }}
