@@ -46,7 +46,7 @@ export class ListToExcelComponent implements OnInit {
       /**
        * Designing starts here
        */
-      //Border for the top Group cell
+      //Border for the top Group cellS
       wSheet.getCell('A1').border = {
         top: { style: 'medium' },
         left: { style: 'medium' },
