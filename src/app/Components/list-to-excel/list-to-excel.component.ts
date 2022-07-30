@@ -138,19 +138,12 @@ export class ListToExcelComponent implements OnInit {
 
   public exportAll() {
     // Get all datasets
-    const allDs = this.data1.getallDS();
-    const workbook = new Workbook();
-
-    allDs.forEach((dataset:Group))=> {
-      
-    }
     // Each dataset gets 1 worksheet
     // loop each dataset
     //    make a sheet
     //    add a group with student table in cascading style
   }
 
-}
 
 
 
