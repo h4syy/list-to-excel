@@ -1,599 +1,1222 @@
 import { Injectable } from '@angular/core';
 import { Group } from '../Common/group';
+import { Program } from '../Common/program';
+import { Year } from '../Common/year';
 @Injectable({
   providedIn: 'root',
 })
 export class GroupstudentService {
+
   dataset1: Group[] = [
     {
       group: 'L1C1',
-      studentsList: [
+      groupsignature: 'lonecone',
+      studentList: [
         {
-          Id: 1,
-          Name: 'abc',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 1,
+          name: 'Allie R. Noble',
+          phone: '213-406-4580',
+          email: 'AllieRNoble@jourrapide.com',
         },
         {
-          Id: 2,
-          Name: 'base',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 2,
+          name: 'Audrey A. Fredericks',
+          phone: '859-948-6255',
+          email: 'AudreyAFredericks@jourrapide.com',
         },
         {
-          Id: 3,
-          Name: 'hiyas',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 3,
+          name: 'Javier V. Jackson',
+          phone: '618-659-3734',
+          email: 'JavierVJackson@armyspy.com',
         },
         {
-          Id: 6,
-          Name: 'giuhs',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 4,
+          name: 'Gloria V. Tabron',
+          phone: '478-812-6082',
+          email: 'GloriaVTabron@rhyta.com',
         },
         {
-          Id: 4,
-          Name: 'yash',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 5,
+          name: 'Arlene R. Cooper',
+          phone: '312-533-5687',
+          email: 'ArleneRCooper@armyspy.com',
         },
         {
-          Id: 64,
-          Name: 'gopur',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 6,
+          name: 'Earl J. Roman',
+          phone: '801-754-8265',
+          email: 'EarlJRoman@teleworm.us',
         },
         {
-          Id: 23,
-          Name: 'qufnf',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 7,
+          name: 'Mary R. Baltazar',
+          phone: '319-483-5677',
+          email: 'MaryRBaltazar@teleworm.us',
         },
         {
-          Id: 57,
-          Name: 'iogusg',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 8,
+          name: 'Larry R. Williams',
+          phone: '727-343-5653',
+          email: 'LarryRWilliams@armyspy.com',
         },
         {
-          Id: 32,
-          Name: 'naogir',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 9,
+          name: 'Carolyn E. Watters',
+          phone: '904-579-2974',
+          email: 'CarolynEWatters@armyspy.com',
         },
         {
-          Id: 99,
-          Name: 'efigr',
-          Phone: '9090909090',
-          Email: 'fdsbahfj@gmail.com',
+          id: 10,
+          name: 'Ralph T. Jones',
+          phone: '678-714-2360',
+          email: 'RalphTJones@rhyta.com',
         },
-      ],
+      ]
     },
-  ]
-  dataset2: Group[] = [
     {
       group: 'L1C2',
-      studentsList: [
+      groupsignature: 'lonectwo',
+      studentList: [
         {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
+          id: 1,
+          name: 'Fiore Zetticci',
+          phone: '0350 7525146',
+          email: 'FioreZetticci@teleworm.us',
         },
         {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
+          id: 2,
+          name: 'Fausto Pinto',
+          phone: '0341 2702500',
+          email: 'FaustoPinto@armyspy.com',
         },
         {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
+          id: 3,
+          name: 'Alvisa Palermo',
+          phone: '0355 0973605',
+          email: 'AlvisaPalermo@armyspy.com',
         },
         {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
+          id: 4,
+          name: 'Gloria V. Tabron',
+          phone: '0385 0669713',
+          email: 'GloriaVTabron@rhyta.com',
         },
         {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
+          id: 5,
+          name: 'Mareta Padovesi',
+          phone: '0393 3743568',
+          email: 'MaretaPadovesi@jourrapide.com',
         },
         {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
+          id: 6,
+          name: 'Filippa Onio',
+          phone: '0356 3560203',
+          email: 'FilippaOnio@dayrep.com',
         },
-        {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
-        },
-        {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
-        },
-        {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
-        },
-        {
-          Id: 1,
-          Name: 'ASD',
-          Phone: '123845784948',
-          Email: 'iisauif@gmail.com',
-        },
-      ],
+      ]
     },
     {
       group: 'L1C3',
-      studentsList: [
+      groupsignature: 'lonethree',
+      studentList: [
         {
-          Id: 1,
-          Name: 'Charles',
-          Phone: '403-350-4245',
-          Email: 'CharlesGill@dayrep.com',
+          id: 0,
+          name: "Reece Kay",
+          phone: "078 8646 0139",
+          email: "ReeceKay@rhyta.com"
         },
         {
-          Id: 2,
-          Name: 'Lydia',
-          Phone: '306-785-5941',
-          Email: 'LydiaHowarth@fleckens.hu',
+          id: 0,
+          name: "Ellie Palmer",
+          phone: "078 6097 0693",
+          email: "ElliePalmer@einrot.com"
         },
         {
-          Id: 3,
-          Name: 'Matilda',
-          Phone: '416-290-6653',
-          Email: 'MatildaNelson@rhyta.com',
+          id: 0,
+          name: "Mia Parker",
+          phone: "077 5067 2982",
+          email: "MiaParker@cuvox.de"
         },
         {
-          Id: 4,
-          Name: 'Peter',
-          Phone: '819-573-5470',
-          Email: 'PeterMarsh@gustr.com',
+          id: 0,
+          name: "Louis Vincent",
+          phone: "079 8748 6044",
+          email: "LouisVincent@teleworm.us"
         },
         {
-          Id: 5,
-          Name: 'Kai',
-          Phone: '780-878-0505',
-          Email: 'KaiTyler@armyspy.com',
+          id: 0,
+          name: "Ryan Parsons",
+          phone: "078 4877 0816",
+          email: "RyanParsons@armyspy.com"
         },
         {
-          Id: 6,
-          Name: 'Jamie',
-          Phone: '514-602-9203',
-          Email: 'JamieBriggs@dayrep.com',
+          id: 0,
+          name: "Hayden Roberts",
+          phone: "077 0143 1358",
+          email: "HaydenRoberts@superrito.com"
         },
         {
-          Id: 7,
-          Name: 'Joel',
-          Phone: '819-224-0372',
-          Email: 'JoelJordan@jourrapIde.com',
+          id: 0,
+          name: "Lola Lambert",
+          phone: "070 5368 6843",
+          email: "LolaLambert@dayrep.com"
         },
         {
-          Id: 8,
-          Name: 'Sophie',
-          Phone: '867-334-4662',
-          Email: 'SophieGordon@einrot.com',
+          id: 0,
+          name: "Jake Goodwin",
+          phone: "077 2306 0131",
+          email: "JakeGoodwin@rhyta.com"
         },
         {
-          Id: 9,
-          Name: 'Louie',
-          Phone: '905-770-1473',
-          Email: 'LouieOwens@jourrapIde.com',
+          id: 0,
+          name: "Maya Faulkner",
+          phone: "078 6136 5657",
+          email: "MayaFaulkner@fleckens.hu"
         },
         {
-          Id: 10,
-          Name: 'Ewan',
-          Phone: '403-503-6313',
-          Email: 'EwanJohnson@dayrep.com',
+          id: 0,
+          name: "Harvey Austin",
+          phone: "077 5588 2112",
+          email: "HarveyAustin@armyspy.com"
         },
         {
-          Id: 11,
-          Name: 'Jamie',
-          Phone: '519-823-0952',
-          Email: 'JamieDawson@superrito.com',
+          id: 0,
+          name: "Harriet Hawkins",
+          phone: "077 8954 3532",
+          email: "HarrietHawkins@cuvox.de"
         },
         {
-          Id: 12,
-          Name: 'Kayleigh',
-          Phone: '613-449-1518',
-          Email: 'KayleighHammond@einrot.com',
+          id: 0,
+          name: "Cerys Davison",
+          phone: "078 1984 6153",
+          email: "CerysDavison@jourrapide.com"
+        },
+
+        {
+          id: 0,
+          name: "Melissa Harvey",
+          phone: "077 4512 5196",
+          email: "MelissaHarvey@jourrapide.com"
         },
         {
-          Id: 13,
-          Name: 'Mohammad',
-          Phone: '867-952-2942',
-          Email: 'MohammadBurton@rhyta.com',
+          id: 0,
+          name: "Logan Davidson",
+          phone: "079 4173 9382",
+          email: "LoganDavidson@einrot.com"
         },
         {
-          Id: 14,
-          Name: 'Ben',
-          Phone: '204-720-9149',
-          Email: 'BenWalker@superrito.com',
+          id: 0,
+          name: "Max Spencer",
+          phone: "070 5271 8507",
+          email: "MaxSpencer@dayrep.com"
         },
         {
-          Id: 15,
-          Name: 'Skye',
-          Phone: '780-554-6627',
-          Email: 'SkyeRichards@rhyta.com',
+          id: 0,
+          name: "Eleanor Harrison",
+          phone: "077 0355 0554",
+          email: "EleanorHarrison@superrito.com"
         },
         {
-          Id: 16,
-          Name: 'Louise',
-          Phone: '514-573-5953',
-          Email: 'LouiseNaylor@fleckens.hu',
+          id: 0,
+          name: "Ellie Adams",
+          phone: "077 2443 3937",
+          email: "EllieAdams@rhyta.com"
+        },
+      ]
+    },
+    {
+      group: 'L1C4',
+      groupsignature: 'lonecfour',
+      studentList: [
+        {
+          id: 1,
+          name: 'Fiore Zetticci',
+          phone: '0350 7525146',
+          email: 'FioreZetticci@teleworm.us',
         },
         {
-          Id: 17,
-          Name: 'Tia',
-          Phone: '250-747-3999',
-          Email: 'TiaOwen@dayrep.com',
+          id: 2,
+          name: 'Fausto Pinto',
+          phone: '0341 2702500',
+          email: 'FaustoPinto@armyspy.com',
         },
         {
-          Id: 18,
-          Name: 'Lucas',
-          Phone: '514-943-9091',
-          Email: 'LucasNewton@einrot.com',
+          id: 3,
+          name: 'Alvisa Palermo',
+          phone: '0355 0973605',
+          email: 'AlvisaPalermo@armyspy.com',
         },
         {
-          Id: 19,
-          Name: 'Daisy',
-          Phone: '514-572-8741',
-          Email: 'DaisyNicholson@armyspy.com',
+          id: 4,
+          name: 'Gloria V. Tabron',
+          phone: '0385 0669713',
+          email: 'GloriaVTabron@rhyta.com',
         },
         {
-          Id: 20,
-          Name: 'Louie',
-          Phone: '905-372-4789',
-          Email: 'LouiePorter@fleckens.hu',
+          id: 5,
+          name: 'Mareta Padovesi',
+          phone: '0393 3743568',
+          email: 'MaretaPadovesi@jourrapide.com',
         },
         {
-          Id: 21,
-          Name: 'Laura',
-          Phone: '647-883-3184',
-          Email: 'LauraAkhtar@cuvox.de',
+          id: 6,
+          name: 'Filippa Onio',
+          phone: '0356 3560203',
+          email: 'FilippaOnio@dayrep.com',
+        },
+      ]
+    },
+    {
+      group: 'L1C5',
+      groupsignature: 'lonecfive',
+      studentList: [
+        {
+          id: 0,
+          name: "Reece Kay",
+          phone: "078 8646 0139",
+          email: "ReeceKay@rhyta.com"
         },
         {
-          Id: 22,
-          Name: 'Kate',
-          Phone: '519-287-1178',
-          Email: 'KateJohn@armyspy.com',
+          id: 0,
+          name: "Ellie Palmer",
+          phone: "078 6097 0693",
+          email: "ElliePalmer@einrot.com"
         },
         {
-          Id: 23,
-          Name: 'Nathan',
-          Phone: '780-771-7510',
-          Email: 'NathanBryan@fleckens.hu',
+          id: 0,
+          name: "Mia Parker",
+          phone: "077 5067 2982",
+          email: "MiaParker@cuvox.de"
         },
         {
-          Id: 24,
-          Name: 'Alexandra',
-          Phone: '613-863-4266',
-          Email: 'AlexandraWebster@fleckens.hu',
+          id: 0,
+          name: "Louis Vincent",
+          phone: "079 8748 6044",
+          email: "LouisVincent@teleworm.us"
         },
         {
-          Id: 25,
-          Name: 'Joel',
-          Phone: '416-221-1415',
-          Email: 'JoelHenderson@dayrep.com',
+          id: 0,
+          name: "Ryan Parsons",
+          phone: "078 4877 0816",
+          email: "RyanParsons@armyspy.com"
         },
         {
-          Id: 26,
-          Name: 'Sam',
-          Phone: '705-749-4494',
-          Email: 'SamTurnbull@cuvox.de',
+          id: 0,
+          name: "Hayden Roberts",
+          phone: "077 0143 1358",
+          email: "HaydenRoberts@superrito.com"
         },
         {
-          Id: 27,
-          Name: 'Charles',
-          Phone: '306-825-5277',
-          Email: 'CharlesNoble@fleckens.hu',
+          id: 0,
+          name: "Lola Lambert",
+          phone: "070 5368 6843",
+          email: "LolaLambert@dayrep.com"
         },
         {
-          Id: 28,
-          Name: 'Niamh',
-          Phone: '306-832-9242',
-          Email: 'NiamhCarpenter@cuvox.de',
+          id: 0,
+          name: "Jake Goodwin",
+          phone: "077 2306 0131",
+          email: "JakeGoodwin@rhyta.com"
         },
         {
-          Id: 29,
-          Name: 'Josh',
-          Phone: '819-782-8026',
-          Email: 'JoshJones@superrito.com',
+          id: 0,
+          name: "Maya Faulkner",
+          phone: "078 6136 5657",
+          email: "MayaFaulkner@fleckens.hu"
         },
         {
-          Id: 30,
-          Name: 'Emma',
-          Phone: '306-966-3998',
-          Email: 'EmmaHarding@jourrapide.com',
+          id: 0,
+          name: "Harvey Austin",
+          phone: "077 5588 2112",
+          email: "HarveyAustin@armyspy.com"
         },
         {
-          Id: 31,
-          Name: 'Zak',
-          Phone: '604-935-6001',
-          Email: 'ZakRoberts@teleworm.us',
+          id: 0,
+          name: "Harriet Hawkins",
+          phone: "077 8954 3532",
+          email: "HarrietHawkins@cuvox.de"
         },
         {
-          Id: 32,
-          Name: 'Lara',
-          Phone: '705-568-1563',
-          Email: 'LaraMoore@superrito.com',
+          id: 0,
+          name: "Cerys Davison",
+          phone: "078 1984 6153",
+          email: "CerysDavison@jourrapide.com"
+        },
+
+        {
+          id: 0,
+          name: "Melissa Harvey",
+          phone: "077 4512 5196",
+          email: "MelissaHarvey@jourrapide.com"
         },
         {
-          Id: 33,
-          Name: 'Scott',
-          Phone: '416-459-9995',
-          Email: 'ScottJames@armyspy.com',
+          id: 0,
+          name: "Logan Davidson",
+          phone: "079 4173 9382",
+          email: "LoganDavidson@einrot.com"
         },
         {
-          Id: 34,
-          Name: 'Eva',
-          Phone: '514-912-9364',
-          Email: 'EvaBarlow@jourrapide.com',
+          id: 0,
+          name: "Max Spencer",
+          phone: "070 5271 8507",
+          email: "MaxSpencer@dayrep.com"
         },
         {
-          Id: 35,
-          Name: 'Georgina',
-          Phone: '604-858-7802',
-          Email: 'GeorginaLawrence@armyspy.com',
+          id: 0,
+          name: "Eleanor Harrison",
+          phone: "077 0355 0554",
+          email: "EleanorHarrison@superrito.com"
         },
         {
-          Id: 36,
-          Name: 'Zak',
-          Phone: '705-528-7173',
-          Email: 'ZakArcher@rhyta.com',
+          id: 0,
+          name: "Ellie Adams",
+          phone: "077 2443 3937",
+          email: "EllieAdams@rhyta.com"
         },
-        {
-          Id: 37,
-          Name: 'Corey',
-          Phone: '306-421-9629',
-          Email: 'CoreyWilson@cuvox.de',
-        },
-        {
-          Id: 38,
-          Name: 'Alice',
-          Phone: '705-641-3010',
-          Email: 'AliceParry@jourrapide.com',
-        },
-        {
-          Id: 39,
-          Name: 'Brooke',
-          Phone: '613-733-8925',
-          Email: 'BrookeJohnston@cuvox.de',
-        },
-        {
-          Id: 40,
-          Name: 'Tyler',
-          Phone: '819-980-1853',
-          Email: 'TylerDavidson@rhyta.com',
-        },
-        {
-          Id: 41,
-          Name: 'Elise',
-          Phone: '403-835-4499',
-          Email: 'EliseHargreaves@jourrapide.com',
-        },
-        {
-          Id: 42,
-          Name: 'Oliver',
-          Phone: '306-536-4443',
-          Email: 'OliverStokes@cuvox.de',
-        },
-        {
-          Id: 43,
-          Name: 'Niamh',
-          Phone: '416-945-3269',
-          Email: 'NiamhPreston@armyspy.com',
-        },
-        {
-          Id: 44,
-          Name: 'Alisha',
-          Phone: '905-714-8398',
-          Email: 'AlishaMurray@jourrapide.com',
-        },
-        {
-          Id: 45,
-          Name: 'Chelsea',
-          Phone: '250-237-3448',
-          Email: 'ChelseaShah@einrot.com',
-        },
-        {
-          Id: 46,
-          Name: 'Nicholas',
-          Phone: '905-659-9767',
-          Email: 'NicholasFarrell@einrot.com',
-        },
-        {
-          Id: 47,
-          Name: 'Emily',
-          Phone: '416-360-5130',
-          Email: 'EmilyParry@rhyta.com',
-        },
-        {
-          Id: 48,
-          Name: 'Melissa',
-          Phone: '867-390-9942',
-          Email: 'MelissaLittle@fleckens.hu',
-        },
-        {
-          Id: 49,
-          Name: 'Harrison',
-          Phone: '905-799-6698',
-          Email: 'HarrisonWhitehead@gustr.com',
-        },
-        {
-          Id: 50,
-          Name: 'Laura',
-          Phone: '450-702-7188',
-          Email: 'LauraBray@superrito.com',
-        },
-      ],
+      ]
     },
   ]
-  dataset3: Group[] = []
+
+  dataset2: Group[] = []
+
+  dataset3: Group[] = [
+    {
+      group: 'L1C1',
+      groupsignature: 'lonecone',
+      studentList: [
+        {
+          id: 1,
+          name: 'Allie R. Noble',
+          phone: '213-406-4580',
+          email: 'AllieRNoble@jourrapide.com',
+        },
+        {
+          id: 2,
+          name: 'Audrey A. Fredericks',
+          phone: '859-948-6255',
+          email: 'AudreyAFredericks@jourrapide.com',
+        },
+        {
+          id: 3,
+          name: 'Javier V. Jackson',
+          phone: '618-659-3734',
+          email: 'JavierVJackson@armyspy.com',
+        },
+        {
+          id: 4,
+          name: 'Gloria V. Tabron',
+          phone: '478-812-6082',
+          email: 'GloriaVTabron@rhyta.com',
+        },
+        {
+          id: 5,
+          name: 'Arlene R. Cooper',
+          phone: '312-533-5687',
+          email: 'ArleneRCooper@armyspy.com',
+        },
+        {
+          id: 6,
+          name: 'Earl J. Roman',
+          phone: '801-754-8265',
+          email: 'EarlJRoman@teleworm.us',
+        },
+        {
+          id: 7,
+          name: 'Mary R. Baltazar',
+          phone: '319-483-5677',
+          email: 'MaryRBaltazar@teleworm.us',
+        },
+        {
+          id: 8,
+          name: 'Larry R. Williams',
+          phone: '727-343-5653',
+          email: 'LarryRWilliams@armyspy.com',
+        },
+        {
+          id: 9,
+          name: 'Carolyn E. Watters',
+          phone: '904-579-2974',
+          email: 'CarolynEWatters@armyspy.com',
+        },
+        {
+          id: 10,
+          name: 'Ralph T. Jones',
+          phone: '678-714-2360',
+          email: 'RalphTJones@rhyta.com',
+        },
+      ]
+    },
+    {
+      group: 'L1C2',
+      groupsignature: 'lonectwo',
+      studentList: []
+    },
+    {
+      group: 'L1C3',
+      groupsignature: 'lonecthree',
+      studentList: [
+        {
+          id: 0,
+          name: "Reece Kay",
+          phone: "078 8646 0139",
+          email: "ReeceKay@rhyta.com"
+        },
+        {
+          id: 0,
+          name: "Ellie Palmer",
+          phone: "078 6097 0693",
+          email: "ElliePalmer@einrot.com"
+        },
+        {
+          id: 0,
+          name: "Mia Parker",
+          phone: "077 5067 2982",
+          email: "MiaParker@cuvox.de"
+        },
+        {
+          id: 0,
+          name: "Louis Vincent",
+          phone: "079 8748 6044",
+          email: "LouisVincent@teleworm.us"
+        },
+        {
+          id: 0,
+          name: "Ryan Parsons",
+          phone: "078 4877 0816",
+          email: "RyanParsons@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Hayden Roberts",
+          phone: "077 0143 1358",
+          email: "HaydenRoberts@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Lola Lambert",
+          phone: "070 5368 6843",
+          email: "LolaLambert@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Jake Goodwin",
+          phone: "077 2306 0131",
+          email: "JakeGoodwin@rhyta.com"
+        },
+        {
+          id: 0,
+          name: "Maya Faulkner",
+          phone: "078 6136 5657",
+          email: "MayaFaulkner@fleckens.hu"
+        },
+        {
+          id: 0,
+          name: "Harvey Austin",
+          phone: "077 5588 2112",
+          email: "HarveyAustin@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Harriet Hawkins",
+          phone: "077 8954 3532",
+          email: "HarrietHawkins@cuvox.de"
+        },
+        {
+          id: 0,
+          name: "Cerys Davison",
+          phone: "078 1984 6153",
+          email: "CerysDavison@jourrapide.com"
+        },
+
+        {
+          id: 0,
+          name: "Melissa Harvey",
+          phone: "077 4512 5196",
+          email: "MelissaHarvey@jourrapide.com"
+        },
+        {
+          id: 0,
+          name: "Logan Davidson",
+          phone: "079 4173 9382",
+          email: "LoganDavidson@einrot.com"
+        },
+        {
+          id: 0,
+          name: "Max Spencer",
+          phone: "070 5271 8507",
+          email: "MaxSpencer@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Eleanor Harrison",
+          phone: "077 0355 0554",
+          email: "EleanorHarrison@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Ellie Adams",
+          phone: "077 2443 3937",
+          email: "EllieAdams@rhyta.com"
+        },
+      ]
+    }
+  ]
+
   dataset4: Group[] = [
     {
       group: 'L1C1',
-      studentsList: [
+      groupsignature: 'lonecone',
+      studentList: [
         {
-          Id: 122,
-          Name: 'Alice',
-          Phone: '705-668-2895',
-          Email: 'AliceBibi@superrito.com',
+          id: 1,
+          name: 'Allie R. Noble',
+          phone: '213-406-4580',
+          email: 'AllieRNoble@jourrapide.com',
         },
         {
-          Id: 123,
-          Name: 'Kayleigh',
-          Phone: '306-751-0626',
-          Email: 'KayleighLong@einrot.com',
+          id: 2,
+          name: 'Audrey A. Fredericks',
+          phone: '859-948-6255',
+          email: 'AudreyAFredericks@jourrapide.com',
         },
         {
-          Id: 124,
-          Name: 'Harrison',
-          Phone: '780-325-6599',
-          Email: 'HarrisonGill@superrito.com',
+          id: 3,
+          name: 'Javier V. Jackson',
+          phone: '618-659-3734',
+          email: 'JavierVJackson@armyspy.com',
         },
         {
-          Id: 125,
-          Name: 'Sarah',
-          Phone: '514-998-3473',
-          Email: 'SarahWeston@superrito.com',
+          id: 4,
+          name: 'Gloria V. Tabron',
+          phone: '478-812-6082',
+          email: 'GloriaVTabron@rhyta.com',
         },
         {
-          Id: 126,
-          Name: 'Matthew',
-          Phone: '613-853-0355',
-          Email: 'MatthewChadwick@teleworm.us',
+          id: 5,
+          name: 'Arlene R. Cooper',
+          phone: '312-533-5687',
+          email: 'ArleneRCooper@armyspy.com',
         },
         {
-          Id: 127,
-          Name: 'Sean',
-          Phone: '250-281-6963',
-          Email: 'SeanGordon@jourrapide.com',
+          id: 6,
+          name: 'Earl J. Roman',
+          phone: '801-754-8265',
+          email: 'EarlJRoman@teleworm.us',
         },
         {
-          Id: 128,
-          Name: 'Leah',
-          Phone: '647-885-3845',
-          Email: 'LeahDean@einrot.com',
+          id: 7,
+          name: 'Mary R. Baltazar',
+          phone: '319-483-5677',
+          email: 'MaryRBaltazar@teleworm.us',
         },
         {
-          Id: 129,
-          Name: 'Elliot',
-          Phone: '705-724-9597',
-          Email: 'ElliotMoore@superrito.com',
+          id: 8,
+          name: 'Larry R. Williams',
+          phone: '727-343-5653',
+          email: 'LarryRWilliams@armyspy.com',
         },
         {
-          Id: 130,
-          Name: 'Lara',
-          Phone: '250-267-5764',
-          Email: 'LaraKelly@fleckens.hu',
+          id: 9,
+          name: 'Carolyn E. Watters',
+          phone: '904-579-2974',
+          email: 'CarolynEWatters@armyspy.com',
         },
         {
-          Id: 131,
-          Name: 'Morgan',
-          Phone: '519-592-0316',
-          Email: 'MorganWillis@superrito.com',
+          id: 10,
+          name: 'Ralph T. Jones',
+          phone: '678-714-2360',
+          email: 'RalphTJones@rhyta.com',
         },
-        {
-          Id: 132,
-          Name: 'Libby',
-          Phone: '514-779-5394',
-          Email: 'LibbyHolland@armyspy.com',
-        },
-        {
-          Id: 133,
-          Name: 'William',
-          Phone: '780-852-3299',
-          Email: 'WilliamWilson@jourrapide.com',
-        },
-        {
-          Id: 134,
-          Name: 'Riley',
-          Phone: '416-815-3013',
-          Email: 'RileyWilson@rhyta.com',
-        },
-        {
-          Id: 135,
-          Name: 'Chloe',
-          Phone: '403-503-0659',
-          Email: 'ChloeHale@dayrep.com',
-        },
-        {
-          Id: 136,
-          Name: 'Anna',
-          Phone: '519-661-7663',
-          Email: 'AnnaEdwards@dayrep.com',
-        },
-        {
-          Id: 137,
-          Name: 'Lucy',
-          Phone: '780-433-3858',
-          Email: 'LucyFoster@teleworm.us',
-        },
-        {
-          Id: 138,
-          Name: 'Lucas',
-          Phone: '780-909-0479',
-          Email: 'LucasHyde@cuvox.de',
-        },
-        {
-          Id: 139,
-          Name: 'Noah',
-          Phone: '709-351-6445',
-          Email: 'NoahWhitehouse@dayrep.com',
-        },
-        {
-          Id: 140,
-          Name: 'Eva',
-          Phone: '613-736-4272',
-          Email: 'EvaWallis@gustr.com',
-        },
-        {
-          Id: 141,
-          Name: 'Joel',
-          Phone: '819-779-7199',
-          Email: 'JoelReeves@rhyta.com',
-        },
-        {
-          Id: 142,
-          Name: 'Hollie',
-          Phone: '902-368-3257',
-          Email: 'HollieReynolds@superrito.com',
-        },
-        {
-          Id: 143,
-          Name: 'Ellis',
-          Phone: '519-826-2076',
-          Email: 'EllisWalters@rhyta.com',
-        },
-        {
-          Id: 144,
-          Name: 'Declan',
-          Phone: '306-832-7143',
-          Email: 'DeclanHoughton@dayrep.com',
-        },
-        {
-          Id: 145,
-          Name: 'Matilda',
-          Phone: '250-697-3880',
-          Email: 'MatildaThorpe@teleworm.us',
-        },
-      ],
+      ]
     },
+    {
+      group: 'L1C2',
+      groupsignature: 'lonectwo',
+      studentList: [
+        {
+          id: 1,
+          name: 'Allie R. Noble',
+          phone: '213-406-4580',
+          email: 'AllieRNoble@jourrapide.com',
+        },
+        {
+          id: 2,
+          name: 'Audrey A. Fredericks',
+          phone: '859-948-6255',
+          email: 'AudreyAFredericks@jourrapide.com',
+        },
+        {
+          id: 3,
+          name: 'Javier V. Jackson',
+          phone: '618-659-3734',
+          email: 'JavierVJackson@armyspy.com',
+        },
+        {
+          id: 4,
+          name: 'Gloria V. Tabron',
+          phone: '478-812-6082',
+          email: 'GloriaVTabron@rhyta.com',
+        },
+        {
+          id: 5,
+          name: 'Arlene R. Cooper',
+          phone: '312-533-5687',
+          email: 'ArleneRCooper@armyspy.com',
+        },
+        {
+          id: 6,
+          name: 'Earl J. Roman',
+          phone: '801-754-8265',
+          email: 'EarlJRoman@teleworm.us',
+        },
+        {
+          id: 7,
+          name: 'Mary R. Baltazar',
+          phone: '319-483-5677',
+          email: 'MaryRBaltazar@teleworm.us',
+        },
+        {
+          id: 8,
+          name: 'Larry R. Williams',
+          phone: '727-343-5653',
+          email: 'LarryRWilliams@armyspy.com',
+        },
+        {
+          id: 9,
+          name: 'Carolyn E. Watters',
+          phone: '904-579-2974',
+          email: 'CarolynEWatters@armyspy.com',
+        },
+        {
+          id: 10,
+          name: 'Ralph T. Jones',
+          phone: '678-714-2360',
+          email: 'RalphTJones@rhyta.com',
+        },
+      ]
+    },
+    {
+      group: 'L1C3',
+      groupsignature: 'lonecthree',
+      studentList: [
+        {
+          id: 0,
+          name: "Reece Kay",
+          phone: "078 8646 0139",
+          email: "ReeceKay@rhyta.com"
+        },
+        {
+          id: 0,
+          name: "Ellie Palmer",
+          phone: "078 6097 0693",
+          email: "ElliePalmer@einrot.com"
+        },
+        {
+          id: 0,
+          name: "Mia Parker",
+          phone: "077 5067 2982",
+          email: "MiaParker@cuvox.de"
+        },
+        {
+          id: 0,
+          name: "Louis Vincent",
+          phone: "079 8748 6044",
+          email: "LouisVincent@teleworm.us"
+        },
+        {
+          id: 0,
+          name: "Ryan Parsons",
+          phone: "078 4877 0816",
+          email: "RyanParsons@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Hayden Roberts",
+          phone: "077 0143 1358",
+          email: "HaydenRoberts@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Lola Lambert",
+          phone: "070 5368 6843",
+          email: "LolaLambert@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Jake Goodwin",
+          phone: "077 2306 0131",
+          email: "JakeGoodwin@rhyta.com"
+        },
+        {
+          id: 0,
+          name: "Maya Faulkner",
+          phone: "078 6136 5657",
+          email: "MayaFaulkner@fleckens.hu"
+        },
+        {
+          id: 0,
+          name: "Harvey Austin",
+          phone: "077 5588 2112",
+          email: "HarveyAustin@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Harriet Hawkins",
+          phone: "077 8954 3532",
+          email: "HarrietHawkins@cuvox.de"
+        },
+        {
+          id: 0,
+          name: "Cerys Davison",
+          phone: "078 1984 6153",
+          email: "CerysDavison@jourrapide.com"
+        },
+
+        {
+          id: 0,
+          name: "Melissa Harvey",
+          phone: "077 4512 5196",
+          email: "MelissaHarvey@jourrapide.com"
+        },
+        {
+          id: 0,
+          name: "Logan Davidson",
+          phone: "079 4173 9382",
+          email: "LoganDavidson@einrot.com"
+        },
+        {
+          id: 0,
+          name: "Max Spencer",
+          phone: "070 5271 8507",
+          email: "MaxSpencer@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Eleanor Harrison",
+          phone: "077 0355 0554",
+          email: "EleanorHarrison@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Ellie Adams",
+          phone: "077 2443 3937",
+          email: "EllieAdams@rhyta.com"
+        },
+      ]
+    },
+    {
+      group: 'L1C4',
+      groupsignature: 'lonecfour',
+      studentList: [
+        {
+          id: 0,
+          name: "Ryan Parsons",
+          phone: "078 4877 0816",
+          email: "RyanParsons@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Hayden Roberts",
+          phone: "077 0143 1358",
+          email: "HaydenRoberts@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Lola Lambert",
+          phone: "070 5368 6843",
+          email: "LolaLambert@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Jake Goodwin",
+          phone: "077 2306 0131",
+          email: "JakeGoodwin@rhyta.com"
+        },
+        {
+          id: 0,
+          name: "Maya Faulkner",
+          phone: "078 6136 5657",
+          email: "MayaFaulkner@fleckens.hu"
+        },
+        {
+          id: 0,
+          name: "Harvey Austin",
+          phone: "077 5588 2112",
+          email: "HarveyAustin@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Harriet Hawkins",
+          phone: "077 8954 3532",
+          email: "HarrietHawkins@cuvox.de"
+        },
+        {
+          id: 0,
+          name: "Cerys Davison",
+          phone: "078 1984 6153",
+          email: "CerysDavison@jourrapide.com"
+        },
+
+        {
+          id: 0,
+          name: "Melissa Harvey",
+          phone: "077 4512 5196",
+          email: "MelissaHarvey@jourrapide.com"
+        },
+        {
+          id: 0,
+          name: "Logan Davidson",
+          phone: "079 4173 9382",
+          email: "LoganDavidson@einrot.com"
+        },
+        {
+          id: 0,
+          name: "Max Spencer",
+          phone: "070 5271 8507",
+          email: "MaxSpencer@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Eleanor Harrison",
+          phone: "077 0355 0554",
+          email: "EleanorHarrison@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Ellie Adams",
+          phone: "077 2443 3937",
+          email: "EllieAdams@rhyta.com"
+        },
+      ]
+    },
+    {
+      group: 'L1C5',
+      groupsignature: 'lonecfive',
+      studentList: [
+        {
+          id: 1,
+          name: 'Allie R. Noble',
+          phone: '213-406-4580',
+          email: 'AllieRNoble@jourrapide.com',
+        },
+        {
+          id: 2,
+          name: 'Audrey A. Fredericks',
+          phone: '859-948-6255',
+          email: 'AudreyAFredericks@jourrapide.com',
+        },
+        {
+          id: 3,
+          name: 'Javier V. Jackson',
+          phone: '618-659-3734',
+          email: 'JavierVJackson@armyspy.com',
+        },
+        {
+          id: 4,
+          name: 'Gloria V. Tabron',
+          phone: '478-812-6082',
+          email: 'GloriaVTabron@rhyta.com',
+        },
+        {
+          id: 5,
+          name: 'Arlene R. Cooper',
+          phone: '312-533-5687',
+          email: 'ArleneRCooper@armyspy.com',
+        },
+        {
+          id: 6,
+          name: 'Earl J. Roman',
+          phone: '801-754-8265',
+          email: 'EarlJRoman@teleworm.us',
+        },
+        {
+          id: 7,
+          name: 'Mary R. Baltazar',
+          phone: '319-483-5677',
+          email: 'MaryRBaltazar@teleworm.us',
+        },
+        {
+          id: 8,
+          name: 'Larry R. Williams',
+          phone: '727-343-5653',
+          email: 'LarryRWilliams@armyspy.com',
+        },
+        {
+          id: 9,
+          name: 'Carolyn E. Watters',
+          phone: '904-579-2974',
+          email: 'CarolynEWatters@armyspy.com',
+        },
+        {
+          id: 10,
+          name: 'Ralph T. Jones',
+          phone: '678-714-2360',
+          email: 'RalphTJones@rhyta.com',
+        },
+      ]
+    },
+    {
+      group: 'L1C6',
+      groupsignature: 'lonecsix',
+      studentList: [
+        {
+          id: 1,
+          name: 'Allie R. Noble',
+          phone: '213-406-4580',
+          email: 'AllieRNoble@jourrapide.com',
+        },
+        {
+          id: 2,
+          name: 'Audrey A. Fredericks',
+          phone: '859-948-6255',
+          email: 'AudreyAFredericks@jourrapide.com',
+        },
+        {
+          id: 3,
+          name: 'Javier V. Jackson',
+          phone: '618-659-3734',
+          email: 'JavierVJackson@armyspy.com',
+        },
+        {
+          id: 4,
+          name: 'Gloria V. Tabron',
+          phone: '478-812-6082',
+          email: 'GloriaVTabron@rhyta.com',
+        },
+        {
+          id: 5,
+          name: 'Arlene R. Cooper',
+          phone: '312-533-5687',
+          email: 'ArleneRCooper@armyspy.com',
+        },
+        {
+          id: 6,
+          name: 'Earl J. Roman',
+          phone: '801-754-8265',
+          email: 'EarlJRoman@teleworm.us',
+        },
+        {
+          id: 7,
+          name: 'Mary R. Baltazar',
+          phone: '319-483-5677',
+          email: 'MaryRBaltazar@teleworm.us',
+        },
+        {
+          id: 8,
+          name: 'Larry R. Williams',
+          phone: '727-343-5653',
+          email: 'LarryRWilliams@armyspy.com',
+        },
+        {
+          id: 9,
+          name: 'Carolyn E. Watters',
+          phone: '904-579-2974',
+          email: 'CarolynEWatters@armyspy.com',
+        },
+        {
+          id: 10,
+          name: 'Ralph T. Jones',
+          phone: '678-714-2360',
+          email: 'RalphTJones@rhyta.com',
+        },
+      ]
+    },
+    {
+      group: 'L1C7',
+      groupsignature: 'lonecseven',
+      studentList: [
+        {
+          id: 0,
+          name: "Reece Kay",
+          phone: "078 8646 0139",
+          email: "ReeceKay@rhyta.com"
+        },
+        {
+          id: 0,
+          name: "Ellie Palmer",
+          phone: "078 6097 0693",
+          email: "ElliePalmer@einrot.com"
+        },
+        {
+          id: 0,
+          name: "Mia Parker",
+          phone: "077 5067 2982",
+          email: "MiaParker@cuvox.de"
+        },
+        {
+          id: 0,
+          name: "Louis Vincent",
+          phone: "079 8748 6044",
+          email: "LouisVincent@teleworm.us"
+        },
+        {
+          id: 0,
+          name: "Ryan Parsons",
+          phone: "078 4877 0816",
+          email: "RyanParsons@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Hayden Roberts",
+          phone: "077 0143 1358",
+          email: "HaydenRoberts@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Lola Lambert",
+          phone: "070 5368 6843",
+          email: "LolaLambert@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Jake Goodwin",
+          phone: "077 2306 0131",
+          email: "JakeGoodwin@rhyta.com"
+        },
+        {
+          id: 0,
+          name: "Maya Faulkner",
+          phone: "078 6136 5657",
+          email: "MayaFaulkner@fleckens.hu"
+        },
+        {
+          id: 0,
+          name: "Harvey Austin",
+          phone: "077 5588 2112",
+          email: "HarveyAustin@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Harriet Hawkins",
+          phone: "077 8954 3532",
+          email: "HarrietHawkins@cuvox.de"
+        },
+        {
+          id: 0,
+          name: "Cerys Davison",
+          phone: "078 1984 6153",
+          email: "CerysDavison@jourrapide.com"
+        },
+
+        {
+          id: 0,
+          name: "Melissa Harvey",
+          phone: "077 4512 5196",
+          email: "MelissaHarvey@jourrapide.com"
+        },
+        {
+          id: 0,
+          name: "Logan Davidson",
+          phone: "079 4173 9382",
+          email: "LoganDavidson@einrot.com"
+        },
+        {
+          id: 0,
+          name: "Max Spencer",
+          phone: "070 5271 8507",
+          email: "MaxSpencer@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Eleanor Harrison",
+          phone: "077 0355 0554",
+          email: "EleanorHarrison@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Ellie Adams",
+          phone: "077 2443 3937",
+          email: "EllieAdams@rhyta.com"
+        },
+      ]
+    },
+    {
+      group: 'L1C8',
+      groupsignature: 'loneeight',
+      studentList: [
+        {
+          id: 0,
+          name: "Ryan Parsons",
+          phone: "078 4877 0816",
+          email: "RyanParsons@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Hayden Roberts",
+          phone: "077 0143 1358",
+          email: "HaydenRoberts@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Lola Lambert",
+          phone: "070 5368 6843",
+          email: "LolaLambert@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Jake Goodwin",
+          phone: "077 2306 0131",
+          email: "JakeGoodwin@rhyta.com"
+        },
+        {
+          id: 0,
+          name: "Maya Faulkner",
+          phone: "078 6136 5657",
+          email: "MayaFaulkner@fleckens.hu"
+        },
+        {
+          id: 0,
+          name: "Harvey Austin",
+          phone: "077 5588 2112",
+          email: "HarveyAustin@armyspy.com"
+        },
+        {
+          id: 0,
+          name: "Harriet Hawkins",
+          phone: "077 8954 3532",
+          email: "HarrietHawkins@cuvox.de"
+        },
+        {
+          id: 0,
+          name: "Cerys Davison",
+          phone: "078 1984 6153",
+          email: "CerysDavison@jourrapide.com"
+        },
+
+        {
+          id: 0,
+          name: "Melissa Harvey",
+          phone: "077 4512 5196",
+          email: "MelissaHarvey@jourrapide.com"
+        },
+        {
+          id: 0,
+          name: "Logan Davidson",
+          phone: "079 4173 9382",
+          email: "LoganDavidson@einrot.com"
+        },
+        {
+          id: 0,
+          name: "Max Spencer",
+          phone: "070 5271 8507",
+          email: "MaxSpencer@dayrep.com"
+        },
+        {
+          id: 0,
+          name: "Eleanor Harrison",
+          phone: "077 0355 0554",
+          email: "EleanorHarrison@superrito.com"
+        },
+        {
+          id: 0,
+          name: "Ellie Adams",
+          phone: "077 2443 3937",
+          email: "EllieAdams@rhyta.com"
+        },
+      ]
+    },
+
   ]
 
   getDataSet(index: number) {
@@ -613,9 +1236,119 @@ export class GroupstudentService {
       return [];
     }
   }
-  
-  public getallDS(): Group[][] {
-    return [this.dataset1,this.dataset2,this.dataset3,this.dataset4];
+  itYear1: Program[] = [
+    {
+      name: "BSc Computing",
+      programSignature: "bsccomp",
+      groups: this.dataset1
+    },
+    {
+      name: "BSc Networking",
+      programSignature: "bscnet",
+      groups: this.dataset3
+    }
+  ]
+
+  itYear2: Program[] = [
+    {
+      name: "BSc Computing",
+      programSignature: "bsccomp",
+      groups: this.dataset1
+    },
+    {
+      name: "BSc Networking",
+      programSignature: "bscnet",
+      groups: this.dataset4
+    }
+  ]
+
+  itYear3: Program[] = [
+    {
+      name: "BSc Computing",
+      programSignature: "bsccomp",
+      groups: this.dataset1
+    },
+    {
+      name: "BSc Networking",
+      programSignature: "bscnet",
+      groups: this.dataset3
+    }
+  ]
+
+  bbaYear1: Program[] = [
+    {
+      name: "BBA Finance",
+      programSignature: "bbafin",
+      groups: this.dataset1
+    },
+    {
+      name: "BBA International Business",
+      programSignature: "bbaib",
+      groups: this.dataset2
+    }
+  ]
+
+  bbaYear2: Program[] = [
+    {
+      name: "BBA Finance",
+      programSignature: "bbafin",
+      groups: this.dataset1
+    },
+    {
+      name: "BBA International Business",
+      programSignature: "bbaib",
+      groups: this.dataset4
+    }
+  ]
+
+  bbaYear3: Program[] = [
+    {
+      name: "BBA Finance",
+      programSignature: "bbafin",
+      groups: this.dataset1
+    },
+    {
+      name: "BBA International Business",
+      programSignature: "bbaib",
+      groups: this.dataset3
+    }
+  ]
+
+  allData: Year[] = [
+    {
+      name: "ITYear1",
+      yearSignature: "ITyearone",
+      programs: this.itYear1,
+    },
+    {
+      name: "ITYear2",
+      yearSignature: "ITyeartwo",
+      programs: this.itYear2,
+    },
+    {
+      name: "ITYear3",
+      yearSignature: "ITyearthree",
+      programs: this.itYear3,
+    },
+    {
+      name: "BBAYear1",
+      yearSignature: "bbayearone",
+      programs: this.bbaYear1,
+    },
+    {
+      name: "BBAYear2",
+      yearSignature: "bbayeartwo",
+      programs: this.bbaYear2,
+    },
+    {
+      name: "BBAYear3",
+      yearSignature: "bbayearthree",
+      programs: this.bbaYear3,
+    },
+  ]
+
+  public getAllDs(): Year[] {
+    return this.allData;
   }
 
   // IT 1, IT2, iT3, bba1, bba2, bba3

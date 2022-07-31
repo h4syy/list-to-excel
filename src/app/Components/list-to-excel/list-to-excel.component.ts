@@ -5,6 +5,8 @@ import { GroupstudentService } from '../../services/groupstudent.service';
 import { Workbook } from 'exceljs';
 import { Group } from 'src/app/Common/group';
 import { Student } from 'src/app/Common/student';
+import { Year } from 'src/app/Common/year';
+import { Program } from 'src/app/Common/program';
 @Component({
   selector: 'app-list-to-excel',
   templateUrl: './list-to-excel.component.html',
@@ -39,8 +41,8 @@ export class ListToExcelComponent implements OnInit {
       wSheet.getCell('A1').value = 'Group :' + obj.group;
       wSheet.getCell('A1').alignment = { horizontal: 'center' };
       wSheet.addRow([`Group: ${obj.group}`])
-      obj.studentsList.forEach((student: Student) => {
-        let row = wSheet.addRow([student.Id, student.Name, student.Phone, student.Email])
+      obj.studentList.forEach((student: Student) => {
+        let row = wSheet.addRow([student.id, student.name, student.phone, student.email])
       })
 
       /**
@@ -65,7 +67,7 @@ export class ListToExcelComponent implements OnInit {
       }
       //for last row
       for (let i = 1; i < 5; i++) {
-        wSheet.getCell(obj.studentsList.length + 2, i).border = {
+        wSheet.getCell(obj.studentList.length + 2, i).border = {
           bottom: { style: 'medium' },
           left: { style: 'thin' },
           right: { style: 'thin' },
@@ -73,7 +75,7 @@ export class ListToExcelComponent implements OnInit {
       }
 
       //Cycling through each data cell to put borders on them
-      for (let i = 3; i < obj.studentsList.length + 2; i++) {
+      for (let i = 3; i < obj.studentList.length + 2; i++) {
         for (let j = 1; j < 4; j++) {
           wSheet.getCell(i, j).border = {
             bottom: { style: 'thin' },
@@ -84,7 +86,7 @@ export class ListToExcelComponent implements OnInit {
       }
 
       //Cycling through last column to put medium borders on them
-      for (let i = 3; i < obj.studentsList.length + 2; i++) {
+      for (let i = 3; i < obj.studentList.length + 2; i++) {
         wSheet.getCell(i, 4).border = {
           right: { style: 'medium' },
           bottom: { style: 'thin' },
@@ -92,7 +94,7 @@ export class ListToExcelComponent implements OnInit {
       }
 
       //For last cell
-      wSheet.getCell(obj.studentsList.length + 2, 4).border = {
+      wSheet.getCell(obj.studentList.length + 2, 4).border = {
         right: { style: 'medium' },
         bottom: { style: 'medium' },
       }
@@ -127,7 +129,7 @@ export class ListToExcelComponent implements OnInit {
   getDS(index: number) {
     this.data = this.data1.getDataSet(index);
     this.dataset = "Dataset " + index;
-    this.data.forEach((obj) => { obj.studentsList.sort((a, b) => a.Name > b.Name ? 1 : -1); });
+    this.data.forEach((obj) => { obj.studentList.sort((a, b) => a.name > b.name ? 1 : -1); });
     if (this.data.length > 0) {
       this.messageService.add({ severity: 'success', summary: 'Dataset Loaded', detail: 'Press the export button to save it.' });
     }
@@ -138,8 +140,23 @@ export class ListToExcelComponent implements OnInit {
 
   public exportAll() {
     // Get all datasets
+    const allDatasets: Year[] = this.data1.getAllDs()
+
+    const workbook = new Workbook();
+
     // Each dataset gets 1 worksheet
     // loop each dataset
+    allDatasets.forEach((year: Year) => {
+      const worksheet = workbook.addWorksheet(year.name)
+      let origin = "A4";
+      
+      //looping through each program
+      year.programs.forEach((program: Program) => {
+
+        
+      })
+
+    })
     //    make a sheet
     //    add a group with student table in cascading style
   }}
