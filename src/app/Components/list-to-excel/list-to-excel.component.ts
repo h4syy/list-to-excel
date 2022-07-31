@@ -167,12 +167,6 @@ export class ListToExcelComponent implements OnInit {
             // Set the group name in the cell
             groupNameCell.value = group.group;
 
-            // // Merge the group name cell
-            // worksheet.mergeCells(`${cellName}:${utils.encode_cell({
-            //   c:groupNameCellColumn+3,
-            //   r:groupNameCellRow
-            // })}`)
-
             // Adding table to the worksheet
             const table = worksheet.addTable({
               name: `${program.programSignature}${group.groupsignature}`,
@@ -182,13 +176,13 @@ export class ListToExcelComponent implements OnInit {
               style: {
                 theme: "TableStyleDark1"
               },
-              columns: [{name: 'ID', filterButton: true},
-              {name: 'Name', filterButton: true},
-              {name: 'Phone', filterButton: true},
-              {name: 'Email', filterButton: false},],
+              columns: [{name: 'ID',},
+              {name: 'Name',},
+              {name: 'Phone',},
+              {name: 'Email',},],
               rows: group.studentList.sort((a, b) => (a.name > b.name) ? 1 : -1).map(Object.values),});
 
-            // Incremet row item
+            // Incremet row number
             rowNumber++;
 
             // Get the column and row index of table position
@@ -196,16 +190,16 @@ export class ListToExcelComponent implements OnInit {
             let rowAddress = utils.decode_cell(origin).r;
 
             // Get column index for each data header
-            let idColumn = utils.decode_cell(origin).c + 1;
-            let nameColumn = idColumn + 1;
-            let phoneColumn = nameColumn + 1;
-            let emailColumn = phoneColumn + 1;
+            let idCol = utils.decode_cell(origin).c + 1;
+            let nameCol = idCol + 1;
+            let phoneCol = nameCol + 1;
+            let emailCol = phoneCol + 1;
 
             // Set the width of each column header
-            worksheet.getColumn(idColumn).width = 5;
-            worksheet.getColumn(nameColumn).width = 25;
-            worksheet.getColumn(phoneColumn).width = 15;
-            worksheet.getColumn(emailColumn).width = 35;
+            worksheet.getColumn(idCol).width = 5;
+            worksheet.getColumn(nameCol).width = 25;
+            worksheet.getColumn(phoneCol).width = 15;
+            worksheet.getColumn(emailCol).width = 35;
 
             // Code to execute when row items are 3
             if (rowNumber === 3) {
@@ -238,10 +232,7 @@ export class ListToExcelComponent implements OnInit {
         });
 
         // Merge the cell containing program name
-        worksheet.mergeCells(`${programHeader.getCell(1).address}:${utils.encode_cell({
-          c: 13,
-          r: utils.decode_cell(programHeader.getCell(1).address).r,
-        })}`)
+        worksheet.mergeCells(`${programHeader.getCell(1).address}:${utils.encode_cell({c: 13,r: utils.decode_cell(programHeader.getCell(1).address).r,})}`)
         // Saving the file
     workbook.xlsx.writeBuffer().then((data: any) => {
       const blob = new Blob([data], { type: 'application/octet-stream' });
