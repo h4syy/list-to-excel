@@ -12,6 +12,7 @@
       <li><a class="dropdown-item" id="4" (click)="getDS(4)">Fourth Dataset</a></li>
   </ul>
   <button *ngIf="data.length > 0" class="btn" id="downloadbtn" (click)="createWB()"><i class="fa fa-download"></i>Export Workbook </button>
+  <button  class="btn" id="downloadbtn" (click)="exportAll()"><i class="fa fa-download"></i>Export All </button>
 </div>
 <br><br>
 <div class="emptywarning" *ngIf="(data?.length == 0)">
