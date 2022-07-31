@@ -7,6 +7,7 @@ import { Group } from 'src/app/Common/group';
 import { Student } from 'src/app/Common/student';
 import { Year } from 'src/app/Common/year';
 import { Program } from 'src/app/Common/program';
+import { utils } from 'xlsx';
 @Component({
   selector: 'app-list-to-excel',
   templateUrl: './list-to-excel.component.html',
@@ -141,10 +142,8 @@ export class ListToExcelComponent implements OnInit {
   public exportAll() {
     // Get all datasets
     const allDatasets: Year[] = this.data1.getAllDs()
-
+    // Workbook creation
     const workbook = new Workbook();
-
-    // Each dataset gets 1 worksheet
     // loop each dataset
     allDatasets.forEach((year: Year) => {
       const worksheet = workbook.addWorksheet(year.name)
@@ -152,11 +151,104 @@ export class ListToExcelComponent implements OnInit {
       
       //looping through each program
       year.programs.forEach((program: Program) => {
+      const programHeader = worksheet.addRow([program.name]);
+      // Row Number initialization
+      let rowNumber = 0;
 
-        
+        // iterate through each group
+        program.groups?.forEach((group: Group) => {
+          if (group.studentList.length > 0) {
+            // Get the cell to store group name
+            const groupNameCellColumn = utils.decode_cell(origin).c;
+            const groupNameCellRow = utils.decode_cell(origin).r - 1;
+            const cellName = utils.encode_cell({c: groupNameCellColumn,r: groupNameCellRow})
+            const groupNameCell = worksheet.getCell(cellName);
+
+            // Set the group name in the cell
+            groupNameCell.value = group.group;
+
+            // // Merge the group name cell
+            // worksheet.mergeCells(`${cellName}:${utils.encode_cell({
+            //   c:groupNameCellColumn+3,
+            //   r:groupNameCellRow
+            // })}`)
+
+            // Adding table to the worksheet
+            const table = worksheet.addTable({
+              name: `${program.programSignature}${group.groupsignature}`,
+              ref: origin,
+              headerRow: true,
+              totalsRow: false,
+              style: {
+                theme: "TableStyleDark1"
+              },
+              columns: [{name: 'ID', filterButton: true},
+              {name: 'Name', filterButton: true},
+              {name: 'Phone', filterButton: true},
+              {name: 'Email', filterButton: false},],
+              rows: group.studentList.sort((a, b) => (a.name > b.name) ? 1 : -1).map(Object.values),});
+
+            // Incremet row item
+            rowNumber++;
+
+            // Get the column and row index of table position
+            let columnAddress = utils.decode_cell(origin).c;
+            let rowAddress = utils.decode_cell(origin).r;
+
+            // Get column index for each data header
+            let idColumn = utils.decode_cell(origin).c + 1;
+            let nameColumn = idColumn + 1;
+            let phoneColumn = nameColumn + 1;
+            let emailColumn = phoneColumn + 1;
+
+            // Set the width of each column header
+            worksheet.getColumn(idColumn).width = 5;
+            worksheet.getColumn(nameColumn).width = 25;
+            worksheet.getColumn(phoneColumn).width = 15;
+            worksheet.getColumn(emailColumn).width = 35;
+
+            // Code to execute when row items are 3
+            if (rowNumber === 3) {
+              // Set column address to the start
+              columnAddress = 0;
+              // Set the row index to the next row
+              rowAddress = worksheet.actualRowCount + 1;
+              // Shift the table position for the next table
+              origin = utils.encode_cell({
+                c: columnAddress,
+                r: rowAddress,
+              })
+            }
+            // Code to execute when row items are not 3
+            else {
+              // Add 5 to the column address making it having a one column offset to the last column of previous table
+              columnAddress += 5;
+              // Shift the table position for the next table
+              origin = utils.encode_cell({c: columnAddress,r: rowAddress,})
+            }
+
+            table.commit();
+          }
+        })
+
+        // Shift the table position for tables of new program
+        origin = utils.encode_cell({
+          c: 0,
+          r: worksheet.actualRowCount + 2
+        });
+
+        // Merge the cell containing program name
+        worksheet.mergeCells(`${programHeader.getCell(1).address}:${utils.encode_cell({
+          c: 13,
+          r: utils.decode_cell(programHeader.getCell(1).address).r,
+        })}`)
+        // Saving the file
+    workbook.xlsx.writeBuffer().then((data: any) => {
+      const blob = new Blob([data], { type: 'application/octet-stream' });
+      this.filerSaver.save(blob, `demofile.xlsx`);
+    });
       })
+      
 
     })
-    //    make a sheet
-    //    add a group with student table in cascading style
   }}
