@@ -148,20 +148,20 @@ export class ListToExcelComponent implements OnInit {
     allDatasets.forEach((year: Year) => {
       const worksheet = workbook.addWorksheet(year.name)
       let origin = "A4";
-      
+
       //looping through each program
       year.programs.forEach((program: Program) => {
-      const programHeader = worksheet.addRow([program.name]);
-      // Row Number initialization
-      let rowNumber = 0;
+        const programHeader = worksheet.addRow([program.name]);
+        // For number of tables side by side
+        let tableNum = 0;
 
-        // iterate through each group
+        // Looping through each group
         program.groups?.forEach((group: Group) => {
           if (group.studentList.length > 0) {
             // Get the cell to store group name
             const groupNameCellColumn = utils.decode_cell(origin).c;
             const groupNameCellRow = utils.decode_cell(origin).r - 1;
-            const cellName = utils.encode_cell({c: groupNameCellColumn,r: groupNameCellRow})
+            const cellName = utils.encode_cell({ c: groupNameCellColumn, r: groupNameCellRow })
             const groupNameCell = worksheet.getCell(cellName);
 
             // Set the group name in the cell
@@ -176,17 +176,18 @@ export class ListToExcelComponent implements OnInit {
               style: {
                 theme: "TableStyleDark1"
               },
-              columns: [{name: 'ID',},
-              {name: 'Name',},
-              {name: 'Phone',},
-              {name: 'Email',},],
-              rows: group.studentList.sort((a, b) => (a.name > b.name) ? 1 : -1).map(Object.values),});
+              columns: [{ name: 'ID', },
+              { name: 'Name', },
+              { name: 'Phone', },
+              { name: 'Email', },],
+              rows: group.studentList.sort((a, b) => (a.name > b.name) ? 1 : -1).map(Object.values),
+            });
 
             // Incremet row number
-            rowNumber++;
+            tableNum++;
 
             // Get the column and row index of table position
-            let columnAddress = utils.decode_cell(origin).c;
+            let colAddress = utils.decode_cell(origin).c;
             let rowAddress = utils.decode_cell(origin).r;
 
             // Get column index for each data header
@@ -195,51 +196,58 @@ export class ListToExcelComponent implements OnInit {
             let phoneCol = nameCol + 1;
             let emailCol = phoneCol + 1;
 
-            // Set the width of each column header
-            worksheet.getColumn(idCol).width = 5;
+            // Setting the width of all columns of all tables
+            worksheet.getColumn(idCol).width = 10;
             worksheet.getColumn(nameCol).width = 25;
-            worksheet.getColumn(phoneCol).width = 15;
+            worksheet.getColumn(phoneCol).width = 25;
             worksheet.getColumn(emailCol).width = 35;
 
-            // Code to execute when row items are 3
-            if (rowNumber === 3) {
+
+            // Code to execute when there are 3 tables side by side already
+            if (tableNum === 3) {
               // Set column address to the start
-              columnAddress = 0;
+              colAddress = 0;
               // Set the row index to the next row
               rowAddress = worksheet.actualRowCount + 1;
               // Shift the table position for the next table
               origin = utils.encode_cell({
-                c: columnAddress,
+                c: colAddress,
                 r: rowAddress,
               })
             }
-            // Code to execute when row items are not 3
+            // Code to execute when there arent 3 tables side by side.
             else {
               // Add 5 to the column address making it having a one column offset to the last column of previous table
-              columnAddress += 5;
+              colAddress += 5;
               // Shift the table position for the next table
-              origin = utils.encode_cell({c: columnAddress,r: rowAddress,})
+              origin = utils.encode_cell({ c: colAddress, r: rowAddress, })
             }
 
             table.commit();
           }
         })
 
-        // Shift the table position for tables of new program
+        // Change where to add the new table for tables of new program.
         origin = utils.encode_cell({
           c: 0,
           r: worksheet.actualRowCount + 2
         });
 
         // Merge the cell containing program name
-        worksheet.mergeCells(`${programHeader.getCell(1).address}:${utils.encode_cell({c: 13,r: utils.decode_cell(programHeader.getCell(1).address).r,})}`)
+        worksheet.mergeCells(`${programHeader.getCell(1).address}:${utils.encode_cell({ c: 13, r: utils.decode_cell(programHeader.getCell(1).address).r, })}`)
         // Saving the file
-    workbook.xlsx.writeBuffer().then((data: any) => {
-      const blob = new Blob([data], { type: 'application/octet-stream' });
-      this.filerSaver.save(blob, `demofile.xlsx`);
-    });
-      })
-      
+        workbook.xlsx.writeBuffer().then((data: BlobPart) => {
+          const EXCEL_TYPE =
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+          const EXCEL_EXTENSION = '.xlsx'; //own code
+          const blobData = new Blob([data], { type: EXCEL_TYPE });
 
+          this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
+        });
+      });
     })
-  }}
+
+
+  }
+}
+
