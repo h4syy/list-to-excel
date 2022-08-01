@@ -152,6 +152,7 @@ export class ListToExcelComponent implements OnInit {
       //looping through each program
       year.programs.forEach((program: Program) => {
         const programHeader = worksheet.addRow([program.name]);
+        programHeader.getCell(1).alignment = { horizontal: 'center' };
         // For number of tables side by side
         let tableNum = 0;
 
@@ -174,7 +175,7 @@ export class ListToExcelComponent implements OnInit {
               headerRow: true,
               totalsRow: false,
               style: {
-                theme: "TableStyleDark1"
+                theme: "TableStyleDark9"
               },
               columns: [{ name: 'ID', },
               { name: 'Name', },
@@ -213,6 +214,8 @@ export class ListToExcelComponent implements OnInit {
                 c: colAddress,
                 r: rowAddress,
               })
+              tableNum = 0;
+
             }
             // Code to execute when there arent 3 tables side by side.
             else {
@@ -234,19 +237,19 @@ export class ListToExcelComponent implements OnInit {
 
         // Merge the cell containing program name
         worksheet.mergeCells(`${programHeader.getCell(1).address}:${utils.encode_cell({ c: 13, r: utils.decode_cell(programHeader.getCell(1).address).r, })}`)
-        // Saving the file
-        workbook.xlsx.writeBuffer().then((data: BlobPart) => {
-          const EXCEL_TYPE =
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-          const EXCEL_EXTENSION = '.xlsx'; //own code
-          const blobData = new Blob([data], { type: EXCEL_TYPE });
 
-          this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
-        });
+
       });
     })
+    // Saving the file
+    workbook.xlsx.writeBuffer().then((data: BlobPart) => {
+      const EXCEL_TYPE =
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+      const EXCEL_EXTENSION = '.xlsx'; //own code
+      const blobData = new Blob([data], { type: EXCEL_TYPE });
 
-
+      this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
+    });
   }
 }
 
