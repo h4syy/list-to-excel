@@ -169,7 +169,7 @@ export class ListToExcelComponent implements OnInit {
 
             // Adding table to the worksheet
             const table = worksheet.addTable({
-              name: `${program.programSignature}${group.groupsignature}`,
+              name: `${year.yearSignature}${program.programSignature}${group.groupsignature}`,
               ref: origin,
               headerRow: true,
               totalsRow: false,
@@ -202,7 +202,6 @@ export class ListToExcelComponent implements OnInit {
             worksheet.getColumn(phoneCol).width = 25;
             worksheet.getColumn(emailCol).width = 35;
 
-
             // Code to execute when there are 3 tables side by side already
             if (tableNum === 3) {
               // Set column address to the start
@@ -230,7 +229,7 @@ export class ListToExcelComponent implements OnInit {
         // Change where to add the new table for tables of new program.
         origin = utils.encode_cell({
           c: 0,
-          r: worksheet.actualRowCount + 2
+          r: worksheet.actualRowCount + 3
         });
 
         // Merge the cell containing program name
