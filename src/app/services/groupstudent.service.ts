@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Group } from '../Common/group';
 @Injectable({
   providedIn: 'root',
 })
 export class GroupstudentService {
-  dataset1: any[] = [
+  dataset1: Group[] = [
     {
       group: 'L1C1',
       studentsList: [
@@ -70,7 +71,7 @@ export class GroupstudentService {
       ],
     },
   ]
-  dataset2: any[] = [
+  dataset2: Group[] = [
     {
       group: 'L1C2',
       studentsList: [
@@ -442,151 +443,151 @@ export class GroupstudentService {
       ],
     },
   ]
-  dataset3: any[] = []
-  dataset4: any[] = [
+  dataset3: Group[] = []
+  dataset4: Group[] = [
     {
       group: 'L1C1',
       studentsList: [
         {
-          Id: '122',
+          Id: 122,
           Name: 'Alice',
           Phone: '705-668-2895',
           Email: 'AliceBibi@superrito.com',
         },
         {
-          Id: '123',
+          Id: 123,
           Name: 'Kayleigh',
           Phone: '306-751-0626',
           Email: 'KayleighLong@einrot.com',
         },
         {
-          Id: '124',
+          Id: 124,
           Name: 'Harrison',
           Phone: '780-325-6599',
           Email: 'HarrisonGill@superrito.com',
         },
         {
-          Id: '125',
+          Id: 125,
           Name: 'Sarah',
           Phone: '514-998-3473',
           Email: 'SarahWeston@superrito.com',
         },
         {
-          Id: '126',
+          Id: 126,
           Name: 'Matthew',
           Phone: '613-853-0355',
           Email: 'MatthewChadwick@teleworm.us',
         },
         {
-          Id: '127',
+          Id: 127,
           Name: 'Sean',
           Phone: '250-281-6963',
           Email: 'SeanGordon@jourrapide.com',
         },
         {
-          Id: '128',
+          Id: 128,
           Name: 'Leah',
           Phone: '647-885-3845',
           Email: 'LeahDean@einrot.com',
         },
         {
-          Id: '129',
+          Id: 129,
           Name: 'Elliot',
           Phone: '705-724-9597',
           Email: 'ElliotMoore@superrito.com',
         },
         {
-          Id: '130',
+          Id: 130,
           Name: 'Lara',
           Phone: '250-267-5764',
           Email: 'LaraKelly@fleckens.hu',
         },
         {
-          Id: '131',
+          Id: 131,
           Name: 'Morgan',
           Phone: '519-592-0316',
           Email: 'MorganWillis@superrito.com',
         },
         {
-          Id: '132',
+          Id: 132,
           Name: 'Libby',
           Phone: '514-779-5394',
           Email: 'LibbyHolland@armyspy.com',
         },
         {
-          Id: '133',
+          Id: 133,
           Name: 'William',
           Phone: '780-852-3299',
           Email: 'WilliamWilson@jourrapide.com',
         },
         {
-          Id: '134',
+          Id: 134,
           Name: 'Riley',
           Phone: '416-815-3013',
           Email: 'RileyWilson@rhyta.com',
         },
         {
-          Id: '135',
+          Id: 135,
           Name: 'Chloe',
           Phone: '403-503-0659',
           Email: 'ChloeHale@dayrep.com',
         },
         {
-          Id: '136',
+          Id: 136,
           Name: 'Anna',
           Phone: '519-661-7663',
           Email: 'AnnaEdwards@dayrep.com',
         },
         {
-          Id: '137',
+          Id: 137,
           Name: 'Lucy',
           Phone: '780-433-3858',
           Email: 'LucyFoster@teleworm.us',
         },
         {
-          Id: '138',
+          Id: 138,
           Name: 'Lucas',
           Phone: '780-909-0479',
           Email: 'LucasHyde@cuvox.de',
         },
         {
-          Id: '139',
+          Id: 139,
           Name: 'Noah',
           Phone: '709-351-6445',
           Email: 'NoahWhitehouse@dayrep.com',
         },
         {
-          Id: '140',
+          Id: 140,
           Name: 'Eva',
           Phone: '613-736-4272',
           Email: 'EvaWallis@gustr.com',
         },
         {
-          Id: '141',
+          Id: 141,
           Name: 'Joel',
           Phone: '819-779-7199',
           Email: 'JoelReeves@rhyta.com',
         },
         {
-          Id: '142',
+          Id: 142,
           Name: 'Hollie',
           Phone: '902-368-3257',
           Email: 'HollieReynolds@superrito.com',
         },
         {
-          Id: '143',
+          Id: 143,
           Name: 'Ellis',
           Phone: '519-826-2076',
           Email: 'EllisWalters@rhyta.com',
         },
         {
-          Id: '144',
+          Id: 144,
           Name: 'Declan',
           Phone: '306-832-7143',
           Email: 'DeclanHoughton@dayrep.com',
         },
         {
-          Id: '145',
+          Id: 145,
           Name: 'Matilda',
           Phone: '250-697-3880',
           Email: 'MatildaThorpe@teleworm.us',
@@ -613,5 +614,13 @@ export class GroupstudentService {
     }
   }
 
-  constructor() { }
+  public getallDS(): Group[][] {
+    return [this.dataset1, this.dataset2, this.dataset3, this.dataset4];
+  }
+
+  // IT 1, IT2, iT3, bba1, bba2, bba3
+  // Program [] = [{
+  //   name: 'BSc Computing',
+  //   groups: Group[]
+  // }]
 }

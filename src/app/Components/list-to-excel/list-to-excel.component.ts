@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileSaverService } from 'ngx-filesaver';
 import { MessageService } from 'primeng/api';
 import { GroupstudentService } from '../../services/groupstudent.service';
-import { Row, Workbook } from 'exceljs';
+import { Workbook } from 'exceljs';
 import { Group } from 'src/app/Common/group';
 import { Student } from 'src/app/Common/student';
 @Component({
@@ -20,8 +20,6 @@ export class ListToExcelComponent implements OnInit {
     private data1: GroupstudentService,
     private filerSaver: FileSaverService,
     private messageService: MessageService) { }
-  public index: any
-
   ngOnInit(): void {
   }
 
@@ -32,6 +30,7 @@ export class ListToExcelComponent implements OnInit {
     const workBook = new Workbook();
 
     this.data.forEach((obj: Group) => {
+      // Create worksheet for every object in the group
       const wSheet = workBook.addWorksheet(obj.group);
       wSheet.columns = [
         { width: 10 }, { width: 25 }, { width: 25 }, { width: 35 }
@@ -39,7 +38,7 @@ export class ListToExcelComponent implements OnInit {
       wSheet.mergeCells('A1:D1');
       wSheet.getCell('A1').value = 'Group :' + obj.group;
       wSheet.getCell('A1').alignment = { horizontal: 'center' };
-      wSheet.addRow(['Id', 'Name', 'Phone', 'Email'])
+      wSheet.addRow([`Group: ${obj.group}`])
       obj.studentsList.forEach((student: Student) => {
         let row = wSheet.addRow([student.Id, student.Name, student.Phone, student.Email])
       })
@@ -47,7 +46,7 @@ export class ListToExcelComponent implements OnInit {
       /**
        * Designing starts here
        */
-      //Border for the top Group cell
+      //Border for the top Group cellS
       wSheet.getCell('A1').border = {
         top: { style: 'medium' },
         left: { style: 'medium' },
@@ -143,9 +142,4 @@ export class ListToExcelComponent implements OnInit {
     // loop each dataset
     //    make a sheet
     //    add a group with student table in cascading style
-  }
-
-}
-
-
-
+  }}
