@@ -112,7 +112,7 @@ export class ListToExcelComponent implements OnInit {
   /**
    * This function generates excel workbook from the chosen dataset from the frontend.
    */
-  export() {
+  public export() {
     if (this.data.length == 0) {
       this.messageService.add({ severity: 'error', summary: 'Empty Workbook', detail: 'You selected an empty dataset.' });
     } else {
@@ -125,7 +125,7 @@ export class ListToExcelComponent implements OnInit {
     }
   }
   /**Function to get the data */
-  getDS(index: number) {
+  public getDS(index: number) {
     this.data = this.data1.getDataSet(index);
     this.dataset = "Dataset " + index;
     this.data.forEach((obj) => { obj.studentsList.sort((a, b) => a.Name > b.Name ? 1 : -1); });

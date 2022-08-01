@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -596,7 +595,7 @@ export class GroupstudentService {
     },
   ]
 
-  getDataSet(index: number) {
+  public getDataSet(index: number) {
     if (index == 1) {
       return this.dataset1;
     }
