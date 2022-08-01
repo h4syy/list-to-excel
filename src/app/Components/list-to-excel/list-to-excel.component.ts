@@ -224,7 +224,6 @@ export class ListToExcelComponent implements OnInit {
               // Shift the table position for the next table
               origin = utils.encode_cell({ c: colAddress, r: rowAddress, })
             }
-
             table.commit();
           }
         })
@@ -237,8 +236,6 @@ export class ListToExcelComponent implements OnInit {
 
         // Merge the cell containing program name
         worksheet.mergeCells(`${programHeader.getCell(1).address}:${utils.encode_cell({ c: 13, r: utils.decode_cell(programHeader.getCell(1).address).r, })}`)
-
-
       });
     })
     // Saving the file
