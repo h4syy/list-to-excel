@@ -169,7 +169,7 @@ export class ListToExcelComponent implements OnInit {
 
             // Adding table to the worksheet
             const table = worksheet.addTable({
-              name: `${program.programSignature}${group.groupsignature}`,
+              name: `${year.yearSignature}${program.programSignature}${group.groupsignature}`,
               ref: origin,
               headerRow: true,
               totalsRow: false,
