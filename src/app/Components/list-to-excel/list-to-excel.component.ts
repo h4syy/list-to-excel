@@ -208,7 +208,7 @@ export class ListToExcelComponent implements OnInit {
 							// Set column address to the start
 							colAddress = 0;
 							// Set the row index to the next row
-							rowAddress = worksheet.actualRowCount + 1; llllllllll
+							rowAddress = worksheet.actualRowCount + 1;
 							// Shift the table position for the next table
 							origin = utils.encode_cell({
 								c: colAddress,
@@ -235,17 +235,18 @@ export class ListToExcelComponent implements OnInit {
 
 				// Merge the cell containing program name
 				worksheet.mergeCells(`${programHeader.getCell(1).address}:${utils.encode_cell({ c: 13, r: utils.decode_cell(programHeader.getCell(1).address).r, })}`)
-				// Saving the file
-				workbook.xlsx.writeBuffer().then((data: BlobPart) => {
-					const EXCEL_TYPE =
-						'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-					const EXCEL_EXTENSION = '.xlsx'; //own code
-					const blobData = new Blob([data], { type: EXCEL_TYPE });
 
-					this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
-				});
 			});
 		})
+		// Saving the file
+		workbook.xlsx.writeBuffer().then((data: BlobPart) => {
+			const EXCEL_TYPE =
+				'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+			const EXCEL_EXTENSION = '.xlsx'; //own code
+			const blobData = new Blob([data], { type: EXCEL_TYPE });
+
+			this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
+		});
 
 
 	}
