@@ -153,9 +153,6 @@ export class ListToExcelComponent implements OnInit {
       year.programs.forEach((program: Program) => {
         const programHeader = worksheet.addRow([program.name]);
         programHeader.getCell(1).alignment = { horizontal: 'center' };
-        // For number of tables side by side
-        let tableNum = 0;
-
         // Looping through each group
         program.groups?.forEach((group: Group) => {
           if (group.studentList.length > 0) {
@@ -184,9 +181,6 @@ export class ListToExcelComponent implements OnInit {
               rows: group.studentList.sort((a, b) => (a.name > b.name) ? 1 : -1).map(Object.values),
             });
 
-            // Incremet row number
-            tableNum++;
-
             // Get the column and row index of table position
             let colAddress = utils.decode_cell(origin).c;
             let rowAddress = utils.decode_cell(origin).r;
@@ -204,7 +198,7 @@ export class ListToExcelComponent implements OnInit {
             worksheet.getColumn(emailCol).width = 35;
 
             // Code to execute when there are 3 tables side by side already
-            if (tableNum === 3) {
+            if (worksheet.actualColumnCount >= 12) {
               // Set column address to the start
               colAddress = 0;
               // Set the row index to the next row
@@ -214,8 +208,6 @@ export class ListToExcelComponent implements OnInit {
                 c: colAddress,
                 r: rowAddress,
               })
-              tableNum = 0;
-
             }
             // Code to execute when there arent 3 tables side by side.
             else {
