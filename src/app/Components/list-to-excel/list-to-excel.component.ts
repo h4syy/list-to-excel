@@ -8,6 +8,7 @@ import { Student } from 'src/app/Common/student';
 import { Year } from 'src/app/Common/year';
 import { Program } from 'src/app/Common/program';
 import { utils } from 'xlsx';
+import { StyleConstants } from 'src/app/Common/constants/style-constants';
 @Component({
   selector: 'app-list-to-excel',
   templateUrl: './list-to-excel.component.html',
@@ -50,84 +51,45 @@ export class ListToExcelComponent implements OnInit {
        * Designing starts here
        */
       //Border for the top Group cellS
-      wSheet.getCell('A1').border = {
-        top: { style: 'medium' },
-        left: { style: 'medium' },
-        bottom: { style: 'medium' },
-        right: { style: 'medium' },
-      };
+      wSheet.getCell('A1').border = StyleConstants.MEDIUM_BORDER;
 
       //Border for each table heading i.e Id , Name, etc..
       for (let i = 1; i < 5; i++) {
-        wSheet.getCell(2, i).border = {
-          top: { style: 'medium' },
-          left: { style: 'medium' },
-          bottom: { style: 'medium' },
-          right: { style: 'medium' },
+        wSheet.getCell(2, i).border = StyleConstants.MEDIUM_BORDER;
+        //for last row
+        for (let i = 1; i < 5; i++) {
+          wSheet.getCell(obj.studentList.length + 2, i).border = StyleConstants.LAST_ROW;
         }
-      }
-      //for last row
-      for (let i = 1; i < 5; i++) {
-        wSheet.getCell(obj.studentList.length + 2, i).border = {
-          bottom: { style: 'medium' },
-          left: { style: 'thin' },
-          right: { style: 'thin' },
-        }
-      }
 
-      //Cycling through each data cell to put borders on them
-      for (let i = 3; i < obj.studentList.length + 2; i++) {
-        for (let j = 1; j < 4; j++) {
-          wSheet.getCell(i, j).border = {
-            bottom: { style: 'thin' },
-            left: { style: 'thin' },
-            right: { style: 'thin' }
+        //Cycling through each data cell to put borders on them
+        for (let i = 3; i < obj.studentList.length + 2; i++) {
+          for (let j = 1; j < 4; j++) {
+            wSheet.getCell(i, j).border = StyleConstants.THIN_BORDER_DATACELL;
           }
         }
-      }
 
-      //Cycling through last column to put medium borders on them
-      for (let i = 3; i < obj.studentList.length + 2; i++) {
-        wSheet.getCell(i, 4).border = {
-          right: { style: 'medium' },
-          bottom: { style: 'thin' },
+        //Cycling through last column to put medium borders on them
+        for (let i = 3; i < obj.studentList.length + 2; i++) {
+          wSheet.getCell(i, 4).border = StyleConstants.LAST_COLUMN;
         }
-      }
 
-      //For last cell
-      wSheet.getCell(obj.studentList.length + 2, 4).border = {
-        right: { style: 'medium' },
-        bottom: { style: 'medium' },
+        //For last cell
+        wSheet.getCell(obj.studentList.length + 2, 4).border = StyleConstants.CORNER_CELL;
       }
+      workBook.xlsx.writeBuffer().then((data: BlobPart) => {
+        const EXCEL_TYPE =
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+        const EXCEL_EXTENSION = '.xlsx'; //own code
+        const blobData = new Blob([data], { type: EXCEL_TYPE });
+
+        this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
+      });
     })
-
-    workBook.xlsx.writeBuffer().then((data: BlobPart) => {
-      const EXCEL_TYPE =
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-      const EXCEL_EXTENSION = '.xlsx'; //own code
-      const blobData = new Blob([data], { type: EXCEL_TYPE });
-
-      this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
-    });
   }
 
-  /**
-   * This function generates excel workbook from the chosen dataset from the frontend.
-   */
-  export() {
-    if (this.data.length == 0) {
-      this.messageService.add({ severity: 'error', summary: 'Empty Workbook', detail: 'You selected an empty dataset.' });
-    } else {
-      this.createWB()
-      const EXCEL_TYPE =
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-      const EXCEL_EXTENSION = '.xlsx'; //own code
-      const blobData = new Blob([this.excelFile], { type: EXCEL_TYPE });
-      this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
-    }
-  }
+
   /**Function to get the data */
-  getDS(index: number) {
+  public getDS(index: number) {
     this.data = this.data1.getDataSet(index);
     this.dataset = "Dataset " + index;
     this.data.forEach((obj) => { obj.studentList.sort((a, b) => a.name > b.name ? 1 : -1); });
@@ -244,10 +206,8 @@ export class ListToExcelComponent implements OnInit {
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
       const EXCEL_EXTENSION = '.xlsx'; //own code
       const blobData = new Blob([data], { type: EXCEL_TYPE });
-
       this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
     });
-
 
   }
 }
