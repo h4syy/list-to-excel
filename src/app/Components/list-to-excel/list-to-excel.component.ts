@@ -15,7 +15,6 @@ export class ListToExcelComponent implements OnInit {
   data: Group[] = [];
   dataset: any = "Choose dataset :"
   excelFile: any;
-  bikalpa: any;
 
   constructor(
     private data1: GroupstudentService,
