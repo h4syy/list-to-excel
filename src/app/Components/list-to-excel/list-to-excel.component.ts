@@ -18,7 +18,7 @@ export class ListToExcelComponent implements OnInit {
 
   constructor(
     private data1: GroupstudentService,
-    private filerSaver: FileSaverService,
+    private fileSaver: FileSaverService,
     private messageService: MessageService) { }
   ngOnInit(): void {
   }
@@ -104,7 +104,7 @@ export class ListToExcelComponent implements OnInit {
       const EXCEL_EXTENSION = '.xlsx'; //own code
       const blobData = new Blob([data], { type: EXCEL_TYPE });
 
-      this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
+      this.fileSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
     });
   }
 
@@ -120,7 +120,7 @@ export class ListToExcelComponent implements OnInit {
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
       const EXCEL_EXTENSION = '.xlsx'; //own code
       const blobData = new Blob([this.excelFile], { type: EXCEL_TYPE });
-      this.filerSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
+      this.fileSaver.save(blobData, `demofile${EXCEL_EXTENSION}`);
     }
   }
   /**Function to get the data */
